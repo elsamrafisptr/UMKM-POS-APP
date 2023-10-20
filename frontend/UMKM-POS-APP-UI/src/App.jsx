@@ -1,13 +1,12 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Router from "./components/Router";
+import Home from "./pages/Home";
+
 export default function App() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-8">
-        <Router />
-      </main>
+      <Home />
     </>
   );
 }

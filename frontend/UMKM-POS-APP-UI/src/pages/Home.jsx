@@ -1,14 +1,22 @@
 import React from "react";
-import Case from "../components/Case";
+import Headline from "./section/Headline"
+import SocialProof from "./section/SocialProof";
+import TopFeature from "./section/TopFeature";
+import UserReview from "./section/UserReview"
+import Contributor from "./section/Contributor"
+import FinalCTA from "./section/FinalCTA"
+import Footer from "./section/Footer"
+
 export default function Home() {
   return (
-    <Case>
-      <div className="w-full max-w-lg">
-        <h4 className="text-2xl">Hello React</h4>
-        <p className="text-lg leading-relaxed text-gray-400">
-          A JavaScript library for building user interfaces
-        </p>
-      </div>
-    </Case>
+    <>
+      <Headline/>
+      <SocialProof/>
+      <TopFeature/>
+      <UserReview/>
+      <Contributor/>
+      <FinalCTA/>
+      <Footer/>
+    </>
   );
 }
