@@ -5,44 +5,62 @@ export default function Footer() {
     return (
         <>
             <Case>
-                <footer class="bg-white dark:bg-gray-900">
-                    <div class="container px-6 py-8 mx-auto">
+                <footer className="bg-white dark:bg-gray-900">
+                    <div className="container px-6 py-8 mx-auto">
                         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             <div>
-                                <div class="text-base font-medium text-slate-700 ">
-                                    Community
+                                <div className="text-base font-medium text-slate-500 uppercase">
+                                    Group 1
                                 </div>
 
-                                <a href="#" class="block mt-4 text-sm font-medium text-slate-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
-                                    Github
+                                <a href="#" className="block mt-5 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 1
                                 </a>
-                                <a href="#" class="block mt-2 text-sm font-medium text-slate-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
-                                    Telegram
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 2
+                                </a>
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 3
                                 </a>
                             </div>
-
                             <div>
-                                <div class="text-base font-medium text-slate-700">
-                                    Sponsor Us
+                                <div className="text-base font-medium text-slate-500 uppercase">
+                                    Group 1
                                 </div>
 
-                                <a href="#" class="block mt-4 text-sm font-medium text-slate-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
-                                    Contributor
+                                <a href="#" className="block mt-5 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 1
                                 </a>
-                                <a href="#" class="block mt-2 text-sm font-medium text-slate-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
-                                    Paypal
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 2
                                 </a>
-                                <a href="#" class="block mt-2 text-sm font-medium text-slate-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
-                                    Buy me a Coffee
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 3
+                                </a>
+                            </div>
+                            <div>
+                                <div className="text-base font-medium text-slate-500 uppercase">
+                                    Group 1
+                                </div>
+
+                                <a href="#" className="block mt-5 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 1
+                                </a>
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 2
+                                </a>
+                                <a href="#" className="block mt-3 text-sm font-medium text-slate-700 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline">
+                                    Link 3
                                 </a>
                             </div>
                         </div>
 
-                        <div className="my-10"></div>
-                        <div class="flex flex-col justify-center items-center">
-                            <div className="w-8 h-8 bg-sky-600 mb-4"></div>
+                        <hr class="my-10 border-gray-200 dark:border-gray-700" />
 
-                            <div class="flex -mx-2 sm:mt-0">
+                        <div class="sm:flex sm:items-center sm:justify-between">
+                            <p class="text-sm text-gray-400">© Copyright 2023. Made with love for UMKM Indonesia.</p>
+
+                            <div class="flex mt-3 -mx-2 sm:mt-0">
                                 <a href="#" class="mx-2 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit">
                                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -70,8 +88,6 @@ export default function Footer() {
                                     </svg>
                                 </a>
                             </div>
-
-                            <p class="text-base text-slate-500 mt-2">© Copyright 2023. Made with <span className="text-rose-700 font-semibold">Love</span> for UMKM Indonesia.</p>
                         </div>
                     </div>
                 </footer>

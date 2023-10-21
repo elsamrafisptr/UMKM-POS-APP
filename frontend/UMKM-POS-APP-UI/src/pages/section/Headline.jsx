@@ -5,7 +5,7 @@ export default function Headline() {
     return (
         // Headline CTA Section
         <Case>
-            <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 pt-24 px-5 md:px-24 relative md:mx-auto">
+            <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 pt-24 px-5 md:px-24 relative md:mx-auto">
                 {/*  Parent Headline */}
                 <div>
                     <div className="md:flex md:mt-12">
@@ -23,7 +23,6 @@ export default function Headline() {
                 {/* Slider Image */}
                 <div className="flex float-right pt-12">
                     <div className="w-40 h-40 bg-sky-200 absolute right-0"></div>
-                    <div className="absolute right-12 -bottom-6 px-5 py-3 border rounded drop-shadow-sm bg-white">Ini komentar dari foto tersebut</div>
                 </div>
             </div>
         </Case>

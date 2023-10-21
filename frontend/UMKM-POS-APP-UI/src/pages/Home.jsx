@@ -6,6 +6,7 @@ import UserReview from "./section/UserReview"
 import Contributor from "./section/Contributor"
 import FinalCTA from "./section/FinalCTA"
 import Footer from "./section/Footer"
+import Router from "../components/Router"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Contributor/>
       <FinalCTA/>
       <Footer/>
+      <Router/>
     </>
   );
 }

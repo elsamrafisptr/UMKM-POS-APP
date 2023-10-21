@@ -1,3 +1,5 @@
+import { Alien } from "@phosphor-icons/react"
+
 export const navLinks = [
     {
         id: "home",
@@ -13,36 +15,36 @@ export const navLinks = [
     },
 ];
 
-// export const features = [
-//     {
-//         id: "feature-1",
-//         icon: star,
-//         title: "Rewards",
-//         content:
-//             "The best credit cards offer some tantalizing combinations of promotions and prizes",
-//     },
-//     {
-//         id: "feature-2",
-//         icon: shield,
-//         title: "100% Secured",
-//         content:
-//             "We take proactive steps make sure your information and transactions are secure.",
-//     },
-//     {
-//         id: "feature-3",
-//         icon: send,
-//         title: "Balance Transfer",
-//         content:
-//             "A balance transfer credit card can save you a lot of money in interest charges.",
-//     },
-//     {
-//         id: "feature-4",
-//         icon: send,
-//         title: "Balance Transfer",
-//         content:
-//             "A balance transfer credit card can save you a lot of money in interest charges.",
-//     },
-// ];
+export const features = [
+    {
+        id: "feature-1",
+        icon: Alien,
+        title: "Rewards",
+        content:
+            "The best credit cards offer some tantalizing combinations of promotions and prizes",
+    },
+    {
+        id: "feature-2",
+        icon: Alien,
+        title: "100% Secured",
+        content:
+            "We take proactive steps make sure your information and transactions are secure.",
+    },
+    {
+        id: "feature-3",
+        icon: Alien,
+        title: "Balance Transfer",
+        content:
+            "A balance transfer credit card can save you a lot of money in interest charges.",
+    },
+    {
+        id: "feature-4",
+        icon: Alien,
+        title: "Balance Transfer",
+        content:
+            "A balance transfer credit card can save you a lot of money in interest charges.",
+    },
+];
 
 // export const feedback = [
 //     {
@@ -74,22 +76,22 @@ export const navLinks = [
 export const stats = [
     {
         id: "stats-1",
-        title: "User Active",
+        title: "Stats-1",
         value: "3800+",
     },
     {
         id: "stats-2",
-        title: "Trusted by Company",
+        title: "Stats-2",
         value: "230+",
     },
     {
         id: "stats-3",
-        title: "Transaction",
+        title: "Stats-3",
         value: "$230M+",
     },
     {
         id: "stats-4",
-        title: "Transaction",
+        title: "Stats-4",
         value: "$230M+",
     },    
 ];
@@ -99,24 +101,16 @@ export const footerLinks = [
         title: "Useful Links",
         links: [
             {
-                name: "Content",
+                name: "Link-1",
                 link: "https://www.hoobank.com/content/",
             },
             {
-                name: "How it Works",
+                name: "Link-2",
                 link: "https://www.hoobank.com/how-it-works/",
             },
             {
-                name: "Create",
+                name: "Link-3",
                 link: "https://www.hoobank.com/create/",
-            },
-            {
-                name: "Explore",
-                link: "https://www.hoobank.com/explore/",
-            },
-            {
-                name: "Terms & Services",
-                link: "https://www.hoobank.com/terms-and-services/",
             },
         ],
     },
@@ -124,24 +118,16 @@ export const footerLinks = [
         title: "Community",
         links: [
             {
-                name: "Help Center",
-                link: "https://www.hoobank.com/help-center/",
+                name: "Link-1",
+                link: "https://www.hoobank.com/content/",
             },
             {
-                name: "Partners",
-                link: "https://www.hoobank.com/partners/",
+                name: "Link-2",
+                link: "https://www.hoobank.com/how-it-works/",
             },
             {
-                name: "Suggestions",
-                link: "https://www.hoobank.com/suggestions/",
-            },
-            {
-                name: "Blog",
-                link: "https://www.hoobank.com/blog/",
-            },
-            {
-                name: "Newsletters",
-                link: "https://www.hoobank.com/newsletters/",
+                name: "Link-3",
+                link: "https://www.hoobank.com/create/",
             },
         ],
     },
@@ -149,36 +135,40 @@ export const footerLinks = [
         title: "Partner",
         links: [
             {
-                name: "Our Partner",
-                link: "https://www.hoobank.com/our-partner/",
+                name: "Link-1",
+                link: "https://www.hoobank.com/content/",
             },
             {
-                name: "Become a Partner",
-                link: "https://www.hoobank.com/become-a-partner/",
+                name: "Link-2",
+                link: "https://www.hoobank.com/how-it-works/",
+            },
+            {
+                name: "Link-3",
+                link: "https://www.hoobank.com/create/",
             },
         ],
     },
 ];
 
-// export const socialMedia = [
-//     {
-//         id: "social-media-1",
-//         icon: instagram,
-//         link: "https://www.instagram.com/",
-//     },
-//     {
-//         id: "social-media-2",
-//         icon: telegram,
-//         link: "https://www.facebook.com/",
-//     },
-//     {
-//         id: "social-media-3",
-//         icon: github,
-//         link: "https://www.github.com/",
-//     },
-//     {
-//         id: "social-media-4",
-//         icon: linkedin,
-//         link: "https://www.linkedin.com/",
-//     },
-// ];
+export const socialMedia = [
+    {
+        id: "social-media-1",
+        icon: Alien,
+        link: "https://www.instagram.com/",
+    },
+    {
+        id: "social-media-2",
+        icon: Alien,
+        link: "https://www.facebook.com/",
+    },
+    {
+        id: "social-media-3",
+        icon: Alien,
+        link: "https://www.github.com/",
+    },
+    {
+        id: "social-media-4",
+        icon: Alien,
+        link: "https://www.linkedin.com/",
+    },
+];
