@@ -49,8 +49,8 @@ export default function Navbar() {
                         ))}
                     </ul>
                     <div className="ml-6">
-                        <a href="" className="mr-4 px-3 py-1.5 md:px-4 md:py-2 text-base font-semibold border rounded border-sky-600 text-sky-600">Masuk Akun</a>
-                        <a href="" className="px-3 py-1.5 md:px-4 md:py-2 text-base font-semibold text-white border rounded border-sky-600 bg-sky-600">Buat Akun</a>
+                        <a href="/login" className="mr-4 px-3 py-1.5 md:px-4 md:py-2 text-base font-semibold border rounded border-sky-600 text-sky-600">Masuk Akun</a>
+                        <a href="/register" className="px-3 py-1.5 md:px-4 md:py-2 text-base font-semibold text-white border rounded border-sky-600 bg-sky-600">Buat Akun</a>
                     </div>
                 </div>
             </div>
