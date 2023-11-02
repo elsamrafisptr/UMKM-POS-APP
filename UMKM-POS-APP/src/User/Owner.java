@@ -9,6 +9,6 @@ package User;
  *
  * @author Asus
  */
-public class Owner {
+public class Owner{
     
 }
