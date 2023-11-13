@@ -15,37 +15,6 @@ export const navLinks = [
     },
 ];
 
-export const features = [
-    {
-        id: "feature-1",
-        icon: Alien,
-        title: "Rewards",
-        content:
-            "The best credit cards offer some tantalizing combinations of promotions and prizes",
-    },
-    {
-        id: "feature-2",
-        icon: Alien,
-        title: "100% Secured",
-        content:
-            "We take proactive steps make sure your information and transactions are secure.",
-    },
-    {
-        id: "feature-3",
-        icon: Alien,
-        title: "Balance Transfer",
-        content:
-            "A balance transfer credit card can save you a lot of money in interest charges.",
-    },
-    {
-        id: "feature-4",
-        icon: Alien,
-        title: "Balance Transfer",
-        content:
-            "A balance transfer credit card can save you a lot of money in interest charges.",
-    },
-];
-
 // export const feedback = [
 //     {
 //         id: "feedback-1",
@@ -72,29 +41,6 @@ export const features = [
 //         img: people03,
 //     },
 // ];
-
-export const stats = [
-    {
-        id: "stats-1",
-        title: "Stats-1",
-        value: "3800+",
-    },
-    {
-        id: "stats-2",
-        title: "Stats-2",
-        value: "230+",
-    },
-    {
-        id: "stats-3",
-        title: "Stats-3",
-        value: "$230M+",
-    },
-    {
-        id: "stats-4",
-        title: "Stats-4",
-        value: "$230M+",
-    },    
-];
 
 export const footerLinks = [
     {

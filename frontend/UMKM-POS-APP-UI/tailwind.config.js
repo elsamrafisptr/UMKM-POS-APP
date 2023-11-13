@@ -11,7 +11,14 @@ export default {
       '2xl': ['41px', '120%'],
       '3xl': ['54px', '120%'],
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        slide: {
+          '0%': { left: '0' },
+          '100%': { left: '-100%' },
+        }
+      }
+    },
   },
   plugins: [],
 };

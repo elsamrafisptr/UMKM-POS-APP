@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Eye, EyeClosed } from "@phosphor-icons/react"
+import { Eye, EyeClosed, ArrowLeft } from "@phosphor-icons/react"
 
 export default function Register() {
     const [values, setValue] = useState({
@@ -80,20 +80,24 @@ export default function Register() {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
-                <div style={{
-                    backgroundImage: `url(/bg-1.webp)`, backgroundRepeat: 'no-repeat',
-                }}  ></div>
-                <div className="px-6 md:px-12 mx-auto mt-2">
-                    <div className="w-full justify-start items-center h-12 flex gap-4">
-                        <a className="md:hidden" href="/">icon</a>
-                        <h1 className="text-lg font-bold">Buat Akun</h1>
+                <div className="hidden md:block bg-[url(../../public/bg-1.webp)] bg-cover"></div>
+                <div className="px-6 md:px-12 mx-auto mt-4">
+                    <div className="w-full justify-between items-center h-12 flex gap-4">
+                        <div className="flex items-center gap-3">
+                            <a className="md:hidden" href="/"><ArrowLeft size={24} color="#171717" /></a>
+                            <h1 className="text-xl font-bold">Buat Akun</h1>
+                        </div>
+                        <div className="text-right flex flex-col">
+                            <p className="text-base">Sudah punya akun?</p>
+                            <a href="/register" className="text-base text-sky-600 underline cursor-pointer">Masuk ke Akun</a>
+                        </div>
                     </div>
                     <form onSubmit={handleSubmit} noValidate className="group flex flex-col justify-center items-center">
                         {inputs.map((input) => (
                             <label key={input.id} {...input} value={values[inputs.name]} onChange={onChange} className="block mt-4 relative">
                                 <span className="block text-base font-medium text-gray-600 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">{input.label}</span>
                                 <input {...input} className="invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer w-[405px] px-4 h-11 border border-slate-500 rounded focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40" placeholder={input.placeholder} onChange={onChange} />
-                                <span onClick={togglePassword} className={`top-1/2 px-4 translate-y-0.5 text-sm absolute right-0 ${input.id === 5 || input.id === 4 ? 'block' : 'hidden'}`}>{showPassword ? <Eye size={16} color="#64748b" /> : <EyeClosed size={16} color="#64748b" />}</span>
+                                <span onClick={togglePassword} className={`top-1/2 px-4 translate-y-0.5 text-sm absolute right-0 ${input.id === 5 || input.id === 4 ? 'block' : 'hidden'}`}>{showPassword ? <Eye size={16} color="#64748b" className="cursor-pointer"/> : <EyeClosed size={16} color="#64748b" className="cursor-pointer"/>}</span>
                                 <span className="mt-1 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block hidden w-96 text-sm text-red-600">{input.errorMessage}</span>
                             </label>
                         ))}
@@ -103,14 +107,14 @@ export default function Register() {
                             <p className="text-slate-900 text-base w-96">Saya sudah membaca dan setuju dengan <a href="#" className="text-sky-600 hover:underline">Kebijakan Privasi</a></p>
                         </div>
 
-                        <button type="submit" className="mt-6 group-invalid:pointer-events-none group-invalid:opacity-30 w-[405px] bg-sky-600 text-white font-semibold h-12 rounded hover:bg-sky-700 focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40">Buat </button>
+                        <button type="submit" className="mt-6 group-invalid:pointer-events-none group-invalid:opacity-30 w-[405px] bg-sky-600 text-white font-semibold h-12 rounded hover:bg-sky-700 focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40">Buat Akun</button>
                     </form>
 
-                    <div class="flex items-center justify-between mt-16">
-                        <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
+                    <div class="flex items-center justify-between mt-1">
+                        <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
 
                         <a href="#" class="text-base text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">
-                            or login with
+                            Atau Buat Akun dengan
                         </a>
 
                         <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
