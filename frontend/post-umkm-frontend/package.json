@@ -1,0 +1,27 @@
+{
+    "name": "post-umkm-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@phosphor-icons/react": "^2.0.14",
+        "bcrypt": "^5.1.1",
+        "dotenv": "^16.3.1",
+        "next": "14.0.2",
+        "next-auth": "^4.24.5",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.0.1",
+        "postcss": "^8",
+        "prettier": "^3.1.0",
+        "prettier-plugin-tailwindcss": "^0.5.7",
+        "tailwindcss": "^3.3.0"
+    }
+}
