@@ -1,8 +1,12 @@
+import Sidebar from "@/components/navigation/Sidebar";
+import Topbar from "@/components/navigation/Topbar"
+
 export default function Layout({ children }) {
     return (
         <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-            <aside className="w-full flex-none md:w-80 bg-blue-200"></aside>
-            <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+            <Sidebar></Sidebar>
+            <div className="flex-grow md:overflow-y-auto">
+                <Topbar></Topbar>
                 {children}
             </div>
         </div>

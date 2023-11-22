@@ -81,17 +81,14 @@ export default function Home() {
         <section className="mx-auto bg-slate-50">
             <Navbar />
             {/* Section Headline Start */}
-            <div className="min-h-screen pt-16 md:pt-24 pb-6 px-5 md:px-12 grid grid-rows-2 gap-12">
-                <div className="mt-12 md:mt-6">
+            <div className="min-h-screen pt-16 md:pt-24 pb-6 grid grid-rows-2 gap-12">
+                <div className="mt-12 md:mt-6 px-5 md:px-12">
                     <h1 className="text-6xl font-bold py-2 block">
-                        Ayo mulai{" "}
+                        Menjadi solusi{" "}
                         <span className="text-sky-600 block md:inline">
                             Naik Level
                         </span>{" "}
-                        bersama kami!
-                    </h1>
-                    <h1 className="text-4xl font-black py-2 bg-gradient-to-tr from-cyan-400 to-blue-600">
-                        #DARIKAMIUNTUKKAMU
+                        yang sesuai dengan kebutuhan bisnis anda!
                     </h1>
                     {/* <h1 className="text-6xl font-bold py-2 inline">Naik Level bersama kami!</h1> */}
                     <p className="font-medium text-base md:text-lg py-2 text-slate-600">
