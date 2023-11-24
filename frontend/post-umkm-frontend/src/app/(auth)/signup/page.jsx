@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Eye, EyeClosed, ArrowLeft } from "@phosphor-icons/react";
 import Link from "next/link";
+import SignUpForm from "@/components/form/SignUpForm";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
     const [values, setValue] = useState({
@@ -65,20 +67,41 @@ const RegisterPage = () => {
             placeholder: "Konfirmasi Kata Sandi",
             errorMessage: "Kata sandi tidak sesuai!",
             label: "Konfirmasi Kata Sandi",
-            pattern: values.password,
+            pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
             required: true,
         },
     ];
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // };
 
-    const onChange = (e) => {
-        setValue({ ...values, [e.target.name]: e.target.value });
-    };
+    // const onChange = (e) => {
+    //     setValue({ ...values, [e.target.name]: e.target.value });
+    // };
 
     console.log(values);
+
+    const router = useRouter()
+    const onSubmit = async(values) => {
+        const response = await fetch('api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: values.username,
+                email: values.email,
+                password: values.password
+            })
+        })
+        if (response.ok) {
+            router.push('/dashboard')
+        } else {
+            console.error("Registration Failed")
+        }
+    }
+    
 
     return (
         <>
@@ -103,7 +126,7 @@ const RegisterPage = () => {
                         </div>
                     </div>
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={onSubmit}
                         noValidate
                         className="group flex flex-col justify-center items-center"
                     >
@@ -112,7 +135,7 @@ const RegisterPage = () => {
                                 key={input.id}
                                 {...input}
                                 value={values[inputs.name]}
-                                onChange={onChange}
+                                // onChange={onChange}
                                 className="block mt-4 relative"
                             >
                                 <span className="block text-base font-medium text-gray-600 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">
@@ -122,7 +145,7 @@ const RegisterPage = () => {
                                     {...input}
                                     className="invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer w-[405px] px-4 h-11 border border-slate-500 rounded focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
                                     placeholder={input.placeholder}
-                                    onChange={onChange}
+                                    // onChange={onChange}
                                 />
                                 <span
                                     onClick={togglePassword}
@@ -178,27 +201,27 @@ const RegisterPage = () => {
                         </button>
                     </form>
 
-                    <div class="flex items-center justify-between mt-6">
-                        <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+                    <div className="flex items-center justify-between mt-6">
+                        <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
 
-                        <p href="#" class="text-base text-center text-gray-500">
+                        <p href="#" className="text-base text-center text-gray-500">
                             Atau Buat Akun dengan
                         </p>
 
-                        <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+                        <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
                     </div>
-                    <div class="mt-6 flex justify-center items-center pb-6 gap-3 sm:gap-x-5">
+                    <div className="mt-6 flex justify-center items-center pb-6 gap-3 sm:gap-x-5">
                         <Link
                             href={"/api/auth/signin"}
-                            class="bg-white flex w-1/2 justify-center items-center gap-2 rounded hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5"
+                            className="bg-white flex w-1/2 justify-center items-center gap-2 rounded hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5"
                         >
                             <svg
-                                class="w-5 h-5 sm:h-6 sm:w-6"
+                                className="w-5 h-5 sm:h-6 sm:w-6"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                <g clip-path="url(#clip0_3033_94454)">
+                                <g clipPath="url(#clip0_3033_94454)">
                                     <path
                                         d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.766 15.9274 23.766 12.2764Z"
                                         fill="#4285F4"
@@ -229,14 +252,14 @@ const RegisterPage = () => {
                             <span>Google</span>
                         </Link>
 
-                        <button class="bg-[#1877F2] flex w-1/2 gap-2 justify-center items-center rounded hover:bg-[#1877F2]/80 duration-300 transition-colors border border-transparent px-8 py-2.5">
+                        <button className="bg-[#1877F2] flex w-1/2 gap-2 justify-center items-center rounded hover:bg-[#1877F2]/80 duration-300 transition-colors border border-transparent px-8 py-2.5">
                             <svg
-                                class="w-5 h-5 sm:h-6 sm:w-6"
+                                className="w-5 h-5 sm:h-6 sm:w-6"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                <g clip-path="url(#clip0_3033_94669)">
+                                <g clipPath="url(#clip0_3033_94669)">
                                     <path
                                         d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 17.9895 4.3882 22.954 10.125 23.8542V15.4688H7.07812V12H10.125V9.35625C10.125 6.34875 11.9166 4.6875 14.6576 4.6875C15.9701 4.6875 17.3438 4.92188 17.3438 4.92188V7.875H15.8306C14.34 7.875 13.875 8.80008 13.875 9.75V12H17.2031L16.6711 15.4688H13.875V23.8542C19.6118 22.954 24 17.9895 24 12Z"
                                         fill="white"
@@ -256,6 +279,7 @@ const RegisterPage = () => {
                         </button>
                     </div>
                 </div>
+                {/* <SignUpForm/> */}
             </div>
         </>
     );

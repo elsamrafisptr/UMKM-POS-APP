@@ -8,14 +8,28 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
-  telnumber String @unique
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
   password  String
-  role      Role   @default(OWNER)
+  role      Role        @default(Owner)
+  createdAt DateTime    @default(now())
+  updateAt  DateTime    @updatedAt
+  username  String?     @unique
+  token     AuthToken[]
+}
+
+model AuthToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "authToken_userId_fkey")
 }
 
 enum Role {
-  OWNER
-  EMPLOYEE
+  Owner
+  Employee
 }
