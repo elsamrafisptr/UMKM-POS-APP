@@ -1,33 +1,49 @@
 import nextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import prisma from "@prisma/client"
-import { compare } from "bcrypt"
+import prisma from "@/common/libs/prisma";
+import bcrypt from "bcrypt"
+import { PrismaAdapter } from "@auth/prisma-adapter";
 
 const authOption = {
+    adapter: PrismaAdapter(prisma),
+    session : {
+        strategy: "jwt",
+    },
     providers: [
         CredentialsProvider({
+            name: "credentials",
             credentials: {
-                email: { label: "Email", type: "Email" },
-                telnumber: { label: "telnumber", type: "tel" },
-                password: { label: "password", type: `password` },
+                username: { label: "Nama Pengguna", type: "text", placeholder: "Tuliskan nama pengguna kamu"},
+                email: { label: "Email", type: "text", placeholder: "Tuliskan email kamu yang valid"},
+                telnumber: { label: "Nomor Telepon", type: "tel", placeholder: "08XXXXXXXXX atau 628XXXXXXXXX"},
+                password: { label: "Kata Sandi", type: "password"}
             },
             async authorize(credentials) {
-                const { email, password } = credentials ?? {};
-                if (!email || !password) {
-                    throw new Error("Missing username or password");
+                // cek email dan password valid
+                if (!credentials.email || !credentials.password) {
+                    return null
                 }
+
+                // cek user terdaftar atau tidak
                 const user = await prisma.user.findUnique({
                     where: {
-                        email,
-                    },
-                });
-                // if user doesn't exist or password doesn't match
-                if (!user || !(await compare(password, user.password))) {
-                    throw new Error("Invalid username or password");
-                }
-                return user;
-            },
+                        email: credentials.email
+                    }
+                })
+
+                // user tidak terdaftar
+                if (!user) {return null}
+
+                // compare password user yang sudah dihash
+                const passwordValidation = await bcrypt.compare(credentials.password, user.password)
+                // password salah
+                if (!passwordValidation) { return null }
+
+                // return user jika semua valid
+                return user
+            }
+
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
@@ -35,6 +51,7 @@ const authOption = {
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    debug: process.env.NODE_ENV === "development"
 };
 
 const handler = nextAuth(authOption);

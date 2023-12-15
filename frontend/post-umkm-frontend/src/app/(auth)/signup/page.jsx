@@ -3,15 +3,17 @@
 import { useState } from "react";
 import { Eye, EyeClosed, ArrowLeft } from "@phosphor-icons/react";
 import Link from "next/link";
-import SignUpForm from "@/components/form/SignUpForm";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const RegisterPage = () => {
-    const [values, setValue] = useState({
-        Email: "",
+    const Router = useRouter()
+    const [data, setData] = useState({
+        username: "",
+        email: "",
         telnumber: "",
         password: "",
-        confirmPassword: "",
     });
 
     const [showPassword, setShowPassword] = useState(false);
@@ -21,19 +23,19 @@ const RegisterPage = () => {
     };
 
     const inputs = [
-        // {
-        //     id: 1,
-        //     name: "username",
-        //     type: "text",
-        //     placeholder: "Contoh : Suparman The Last Boss",
-        //     errorMessage: "Nama pengguna harus 3-16 karakter dan tidak berisi simbol!",
-        //     label: "Nama Pengguna",
-        //     pattern: "^[A-Za-z0-9]{3,16}$",
-        //     required: true,
-        // },
+        {
+            id: 1,
+            name: "username",
+            type: "text",
+            placeholder: "Contoh : Suparman The Last Boss",
+            errorMessage: "Nama pengguna harus 3-16 karakter dan tidak berisi simbol!",
+            label: "Nama Pengguna",
+            pattern: "^[A-Za-z0-9]{3,16}$",
+            required: true,
+        },
         {
             id: 2,
-            name: "Email",
+            name: "email",
             type: "Email",
             placeholder: "Contoh : suparman@example.com",
             errorMessage: "Harus berupa email yang valid!",
@@ -60,16 +62,16 @@ const RegisterPage = () => {
             pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
             required: true,
         },
-        {
-            id: 5,
-            name: "confirmPassword",
-            type: `${showPassword ? "text" : "password"}`,
-            placeholder: "Konfirmasi Kata Sandi",
-            errorMessage: "Kata sandi tidak sesuai!",
-            label: "Konfirmasi Kata Sandi",
-            pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
-            required: true,
-        },
+        // {
+        //     id: 5,
+        //     name: "confirmpassword",
+        //     type: `${showPassword ? "text" : "password"}`,
+        //     placeholder: "Konfirmasi Kata Sandi",
+        //     errorMessage: "Kata sandi tidak sesuai!",
+        //     label: "Konfirmasi Kata Sandi",
+        //     pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
+        //     required: true,
+        // },
     ];
 
     // const handleSubmit = (e) => {
@@ -80,21 +82,24 @@ const RegisterPage = () => {
     //     setValue({ ...values, [e.target.name]: e.target.value });
     // };
 
-    console.log(values);
-
     const router = useRouter()
-    const onSubmit = async(values) => {
-        const response = await fetch('api/users', {
+    const registerUser = async(event) => {
+        event.preventDefault()
+        const response = await fetch('/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: values.username,
-                email: values.email,
-                password: values.password
+                username: data.username,
+                email: data.email,
+                telnumber: data.telnumber,
+                password: data.password
             })
         })
+
+        const userInfo = await response.json()
+        console.log(userInfo)
         if (response.ok) {
             router.push('/dashboard')
         } else {
@@ -106,7 +111,13 @@ const RegisterPage = () => {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
-                <div className="hidden md:block w-full bg-slate-100"></div>
+                <div className="hidden md:block w-full bg-slate-100 relative">
+                    <Image
+                        src={"/img2.webp"}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </div>
                 <div className="px-6 md:px-12 mx-auto my-auto">
                     <div className="w-full justify-between items-center h-12 flex gap-4">
                         <div className="flex items-center gap-3">
@@ -126,7 +137,7 @@ const RegisterPage = () => {
                         </div>
                     </div>
                     <form
-                        onSubmit={onSubmit}
+                        onSubmit={registerUser}
                         noValidate
                         className="group flex flex-col justify-center items-center"
                     >
@@ -134,7 +145,7 @@ const RegisterPage = () => {
                             <label
                                 key={input.id}
                                 {...input}
-                                value={values[inputs.name]}
+                                htmlFor={input.name}
                                 // onChange={onChange}
                                 className="block mt-4 relative"
                             >
@@ -143,6 +154,8 @@ const RegisterPage = () => {
                                 </span>
                                 <input
                                     {...input}
+                                    value={data[input.name]}
+                                    onChange={(event) => {setData({...data, [event.target.name]: event.target.value})}}
                                     className="invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer w-[405px] px-4 h-11 border border-slate-500 rounded focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
                                     placeholder={input.placeholder}
                                     // onChange={onChange}
@@ -150,7 +163,7 @@ const RegisterPage = () => {
                                 <span
                                     onClick={togglePassword}
                                     className={`top-1/2 px-4 translate-y-0.5 text-sm absolute right-0 ${
-                                        input.id === 5 || input.id === 4
+                                        input.id === 4
                                             ? "block"
                                             : "hidden"
                                     }`}
@@ -195,7 +208,7 @@ const RegisterPage = () => {
 
                         <button
                             type="submit"
-                            className="mt-6 group-invalid:pointer-events-none group-invalid:opacity-30 w-[405px] bg-sky-600 text-white font-semibold h-12 rounded hover:bg-sky-700 focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
+                            className="mt-6 group-invalid:pointer-events-none group-invalid:opacity-30 flex justify-center items-center text-center w-[405px] bg-sky-600 text-white font-semibold h-12 rounded hover:bg-sky-700 focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
                         >
                             Buat Akun
                         </button>
@@ -211,9 +224,9 @@ const RegisterPage = () => {
                         <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
                     </div>
                     <div className="mt-6 flex justify-center items-center pb-6 gap-3 sm:gap-x-5">
-                        <Link
-                            href={"/api/auth/signin"}
-                            className="bg-white flex w-1/2 justify-center items-center gap-2 rounded hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5"
+                        <button
+                            onClick={() => signIn("google")}
+                            className="bg-white flex w-full justify-center items-center gap-2 rounded hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5"
                         >
                             <svg
                                 className="w-5 h-5 sm:h-6 sm:w-6"
@@ -250,32 +263,6 @@ const RegisterPage = () => {
                                 </defs>
                             </svg>
                             <span>Google</span>
-                        </Link>
-
-                        <button className="bg-[#1877F2] flex w-1/2 gap-2 justify-center items-center rounded hover:bg-[#1877F2]/80 duration-300 transition-colors border border-transparent px-8 py-2.5">
-                            <svg
-                                className="w-5 h-5 sm:h-6 sm:w-6"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clipPath="url(#clip0_3033_94669)">
-                                    <path
-                                        d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 17.9895 4.3882 22.954 10.125 23.8542V15.4688H7.07812V12H10.125V9.35625C10.125 6.34875 11.9166 4.6875 14.6576 4.6875C15.9701 4.6875 17.3438 4.92188 17.3438 4.92188V7.875H15.8306C14.34 7.875 13.875 8.80008 13.875 9.75V12H17.2031L16.6711 15.4688H13.875V23.8542C19.6118 22.954 24 17.9895 24 12Z"
-                                        fill="white"
-                                    />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_3033_94669">
-                                        <rect
-                                            width="24"
-                                            height="24"
-                                            fill="white"
-                                        />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span className="text-white">Facebook</span>
                         </button>
                     </div>
                 </div>
