@@ -10,7 +10,7 @@ const TopBar = () => {
     const [nav, setNav] = useState(false);
 
     return (
-        <nav className="mx-auto w-full h-[72px] bg-white/30 backdrop-blur-lg z-50">
+        <nav className="mx-auto sticky top-0 w-full h-[72px] bg-blue-500 backdrop-blur-lg z-50">
             {/* Desktop Menu */}
             <div className="flex items-center justify-between lg:justify-end h-full px-5 md:px-12 w-full">
                 <div

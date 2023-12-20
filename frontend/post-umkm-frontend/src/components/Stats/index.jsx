@@ -5,20 +5,15 @@ const Stats = () => {
         <>
             <article className="grid grid-cols-4 gap-4 rounded-lg border border-gray-100 bg-white p-6">
                 <div className="col-span-3">
-                    <strong className="block text-sm font-medium text-gray-500">
+                    <strong className="block text-sm font-medium mb-1 text-gray-500">
                         {" "}
-                        Profit{" "}
+                        Pendapatan Hari Ini{" "}
                     </strong>
 
                     <p>
-                        <span className="text-2xl font-medium text-gray-900">
+                        <span className="text-2xl font-semibold text-gray-900">
                             {" "}
-                            $404.32{" "}
-                        </span>
-
-                        <span className="text-xs text-gray-500">
-                            {" "}
-                            from $240.94{" "}
+                            Rp 9.000.000{" "}
                         </span>
                     </p>
                 </div>

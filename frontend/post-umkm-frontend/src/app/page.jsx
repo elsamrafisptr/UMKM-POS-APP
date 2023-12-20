@@ -317,7 +317,7 @@ export default function Home() {
 
             {/* FAQ */}
             <div className="mx-auto min-h-screen py-6 px-5 md:px-12">
-                <FaqSection/>
+                <FaqSection />
             </div>
             {/* FAQ */}
 

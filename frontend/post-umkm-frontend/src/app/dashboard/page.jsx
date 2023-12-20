@@ -1,23 +1,30 @@
 import React from "react";
 import Link from "next/link";
 import Stats from "@/components/Stats";
+import AdsCarousel from "@/components/AdsCaraousel";
+import BlogCard from "@/components/BlogCard";
 
 const DashboardPage = () => {
     const dashboardRoute = "/dashboard/management";
     return (
         <>
             <div className="flex flex-col gap-4 min-h-screen mt-24 md:mt-6">
-                <div className="w-full h-36 bg-sky-200">Iklan</div>
+                <div className="w-full px-6">
+                    <AdsCarousel />
+                </div>
                 <div className="w-full py-4 px-6 bg-slate-100">
+                    <h1 className="text-xl font-bold mb-4">
+                        Laporan Penjualan
+                    </h1>
                     <span className="grid grid-cols-3 gap-6">
                         <Stats />
                         <Stats />
                         <Stats />
                     </span>
                 </div>
-                <div className="w-full py-4 bg-red-200 grid grid-cols-5 px-6 gap-6">
+                <div className="w-full py-4 grid grid-cols-5 px-6 gap-6">
                     <Link href={`${dashboardRoute}/employee`} className="">
-                        <div className="rounded-lg max-w-min bg-gray-800 p-4 flex flex-row">
+                        <div className="rounded-lg bg-gray-800 p-4 flex flex-row">
                             <svg
                                 className="h-5 w-5 text-white"
                                 fill="none"
@@ -38,7 +45,7 @@ const DashboardPage = () => {
                         </div>
                     </Link>
                     <Link href={`${dashboardRoute}/outlet`}>
-                        <div className="rounded-lg max-w-min bg-gray-800 p-4 flex flex-row">
+                        <div className="rounded-lg bg-gray-800 p-4 flex flex-row">
                             <svg
                                 className="h-5 w-5 text-white"
                                 fill="none"
@@ -59,7 +66,7 @@ const DashboardPage = () => {
                         </div>
                     </Link>
                     <Link href={`${dashboardRoute}/product`}>
-                        <div className="rounded-lg max-w-min bg-gray-800 p-4 flex flex-row">
+                        <div className="rounded-lg bg-gray-800 p-4 flex flex-row">
                             <svg
                                 className="h-5 w-5 text-white"
                                 fill="none"
@@ -80,7 +87,7 @@ const DashboardPage = () => {
                         </div>
                     </Link>
                     <Link href={`${dashboardRoute}/product`}>
-                        <div className="rounded-lg max-w-min bg-gray-800 p-4 flex flex-row">
+                        <div className="rounded-lg bg-gray-800 p-4 flex flex-row">
                             <svg
                                 className="h-5 w-5 text-white"
                                 fill="none"
@@ -101,7 +108,7 @@ const DashboardPage = () => {
                         </div>
                     </Link>
                     <Link href={`${dashboardRoute}/product`}>
-                        <div className="rounded-lg max-w-min bg-gray-800 p-4 flex flex-row">
+                        <div className="rounded-lg bg-gray-800 p-4 flex flex-row">
                             <svg
                                 className="h-5 w-5 text-white"
                                 fill="none"
@@ -123,8 +130,28 @@ const DashboardPage = () => {
                     </Link>
                 </div>
 
-                <div className="w-full h-36 bg-green-50">blog tips trik</div>
-                <div className="w-full h-36 bg-violet-50">blog about news</div>
+                <div className="w-full p-6">
+                <h1 className="text-xl font-bold mb-4">
+                        #CeritaLangkahBersama
+                    </h1>
+                    <div className="grid grid-cols-4 gap-4">
+                        <BlogCard />
+                        <BlogCard />
+                        <BlogCard />
+                        <BlogCard />
+                    </div>
+                </div>
+                <div className="w-full p-6">
+                    <h1 className="text-xl font-bold mb-4">
+                        Berita Terkini
+                    </h1>
+                    <div className="grid grid-cols-4 gap-4">
+                        <BlogCard />
+                        <BlogCard />
+                        <BlogCard />
+                        <BlogCard />
+                    </div>
+                </div>
             </div>
         </>
     );

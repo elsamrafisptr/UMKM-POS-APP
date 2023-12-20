@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-    const router = useRouter()
+    const router = useRouter();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -52,19 +52,24 @@ const LoginPage = () => {
     // };
 
     const loginUser = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
         signIn("credentials", {
-            ...data, 
+            ...data,
             redirect: false,
-        })
-        router.push("/dashboard")
-    }
+        });
+        router.push("/dashboard");
+    };
 
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
                 <div className="hidden md:block relative">
-                    <Image src={"/img1.webp"} layout="fill" objectFit="cover" objectPosition="left"/>
+                    <Image
+                        src={"/img1.webp"}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="left"
+                    />
                 </div>
                 <div className="px-6 md:px-12 mx-auto my-auto">
                     <div className="w-full justify-between items-center h-12 flex gap-4">
@@ -102,7 +107,13 @@ const LoginPage = () => {
                                 <input
                                     {...input}
                                     value={data[input.name]}
-                                    onChange={(event) => {setData({...data, [event.target.name]: event.target.value})}}
+                                    onChange={(event) => {
+                                        setData({
+                                            ...data,
+                                            [event.target.name]:
+                                                event.target.value,
+                                        });
+                                    }}
                                     className="invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer w-[405px] px-4 h-11 border border-slate-500 rounded focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
                                     placeholder={input.placeholder}
                                 />

@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const RegisterPage = () => {
-    const Router = useRouter()
+    const Router = useRouter();
     const [data, setData] = useState({
         username: "",
         email: "",
@@ -28,7 +28,8 @@ const RegisterPage = () => {
             name: "username",
             type: "text",
             placeholder: "Contoh : Suparman The Last Boss",
-            errorMessage: "Nama pengguna harus 3-16 karakter dan tidak berisi simbol!",
+            errorMessage:
+                "Nama pengguna harus 3-16 karakter dan tidak berisi simbol!",
             label: "Nama Pengguna",
             pattern: "^[A-Za-z0-9]{3,16}$",
             required: true,
@@ -82,41 +83,36 @@ const RegisterPage = () => {
     //     setValue({ ...values, [e.target.name]: e.target.value });
     // };
 
-    const router = useRouter()
-    const registerUser = async(event) => {
-        event.preventDefault()
-        const response = await fetch('/api/users', {
-            method: 'POST',
+    const router = useRouter();
+    const registerUser = async (event) => {
+        event.preventDefault();
+        const response = await fetch("/api/users", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 username: data.username,
                 email: data.email,
                 telnumber: data.telnumber,
-                password: data.password
-            })
-        })
+                password: data.password,
+            }),
+        });
 
-        const userInfo = await response.json()
-        console.log(userInfo)
+        const userInfo = await response.json();
+        console.log(userInfo);
         if (response.ok) {
-            router.push('/dashboard')
+            router.push("/dashboard");
         } else {
-            console.error("Registration Failed")
+            console.error("Registration Failed");
         }
-    }
-    
+    };
 
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
                 <div className="hidden md:block w-full bg-slate-100 relative">
-                    <Image
-                        src={"/img2.webp"}
-                        layout="fill"
-                        objectFit="cover"
-                    />
+                    <Image src={"/img2.webp"} layout="fill" objectFit="cover" />
                 </div>
                 <div className="px-6 md:px-12 mx-auto my-auto">
                     <div className="w-full justify-between items-center h-12 flex gap-4">
@@ -155,7 +151,13 @@ const RegisterPage = () => {
                                 <input
                                     {...input}
                                     value={data[input.name]}
-                                    onChange={(event) => {setData({...data, [event.target.name]: event.target.value})}}
+                                    onChange={(event) => {
+                                        setData({
+                                            ...data,
+                                            [event.target.name]:
+                                                event.target.value,
+                                        });
+                                    }}
                                     className="invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer w-[405px] px-4 h-11 border border-slate-500 rounded focus:border-sky-600 focus:outline-none focus:ring focus:ring-sky-400 focus:ring-opacity-40"
                                     placeholder={input.placeholder}
                                     // onChange={onChange}
@@ -163,9 +165,7 @@ const RegisterPage = () => {
                                 <span
                                     onClick={togglePassword}
                                     className={`top-1/2 px-4 translate-y-0.5 text-sm absolute right-0 ${
-                                        input.id === 4
-                                            ? "block"
-                                            : "hidden"
+                                        input.id === 4 ? "block" : "hidden"
                                     }`}
                                 >
                                     {showPassword ? (
@@ -217,7 +217,10 @@ const RegisterPage = () => {
                     <div className="flex items-center justify-between mt-6">
                         <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
 
-                        <p href="#" className="text-base text-center text-gray-500">
+                        <p
+                            href="#"
+                            className="text-base text-center text-gray-500"
+                        >
                             Atau Buat Akun dengan
                         </p>
 

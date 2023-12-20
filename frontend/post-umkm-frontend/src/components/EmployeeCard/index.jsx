@@ -5,9 +5,7 @@ import React from "react";
 const EmployeeCard = () => {
     return (
         <>
-            <div>
-                Ngodingnya disini lur . . .
-            </div>
+            <div>Ngodingnya disini lur . . .</div>
         </>
     );
 };
