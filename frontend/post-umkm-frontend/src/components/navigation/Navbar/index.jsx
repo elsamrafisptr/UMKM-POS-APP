@@ -44,9 +44,28 @@ const Navbar = () => {
                 </div>
                 <Link
                     href={"/"}
-                    className="flex items-center justify-end md:justify-start w-[92px] cursor-pointer capitalize font-medium text-white"
+                    className="flex items-center justify-end md:justify-start w-[92px] cursor-pointer"
                 >
-                    Logo
+                    <svg
+                        id="logo-35"
+                        width="50"
+                        height="39"
+                        viewBox="0 0 50 39"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        {" "}
+                        <path
+                            d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z"
+                            class="ccompli1"
+                            fill="#007AFF"
+                        ></path>{" "}
+                        <path
+                            d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z"
+                            class="ccustom"
+                            fill="#312ECB"
+                        ></path>{" "}
+                    </svg>
                 </Link>
                 <div className="flex">
                     <ul className="hidden md:flex">
@@ -81,16 +100,16 @@ const Navbar = () => {
                         <>
                             <Link
                                 href={"/signin"}
-                                className="border border-slate-900 h-[43.5px] mr-4 rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium text-slate-900 hover:bg-slate-200 hover:text-slate-900 duration-200"
+                                className="text-white h-[43.5px] mr-4 rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium hover:bg-slate-200 hover:text-slate-900 duration-200"
                             >
-                                Sign In
+                                Masuk
                             </Link>
 
                             <Link
                                 href={"/signup"}
-                                className="px-4 py-3 rounded cursor-pointer capitalize font-medium text-white hover:text-white duration-200 bg-slate-900 hover:bg-slate-800"
+                                className="px-6 py-3 rounded cursor-pointer capitalize font-semibold text-gray-900 hover:text-white duration-200 bg-white hover:bg-slate-800"
                             >
-                                Sign Up
+                                Daftar
                             </Link>
                         </>
                     )}

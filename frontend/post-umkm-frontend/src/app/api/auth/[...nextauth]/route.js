@@ -14,7 +14,7 @@ const authOption = {
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                username: { label: "Nama Pengguna", type: "text", placeholder: "Tuliskan nama pengguna kamu"},
+                name: { label: "Nama Pengguna", type: "text", placeholder: "Tuliskan nama pengguna kamu"},
                 email: { label: "Email", type: "text", placeholder: "Tuliskan email kamu yang valid"},
                 telnumber: { label: "Nomor Telepon", type: "tel", placeholder: "08XXXXXXXXX atau 628XXXXXXXXX"},
                 password: { label: "Kata Sandi", type: "password"}
