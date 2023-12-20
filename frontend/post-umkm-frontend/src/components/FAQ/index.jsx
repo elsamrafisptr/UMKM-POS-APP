@@ -51,11 +51,11 @@ const FaqSection = () => {
                     </h2>
                 </div>
 
-                <div className="max-w-max mx-auto mt-8 space-y-4 md:mt-16">
+                <div className="max-w-4xl mx-auto mt-8 space-y-4 md:mt-16">
                     {faq.map((item, index) => (
                         <div
                             key={index}
-                            className="transition-all duration-200 bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg"
+                            className="transition-all duration-300 bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg"
                         >
                             <button
                                 type="button"
