@@ -1,9 +1,9 @@
 import RegisterForm from "@/components/RegisterForm";
-import React, { FormEvent } from "react";
+import React from "react";
 
 const RegisterPage = () => {
     return (
-        <div className="max-w-3xl">
+        <div className="">
             <RegisterForm />
         </div>
     );

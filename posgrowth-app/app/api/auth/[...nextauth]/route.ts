@@ -1,10 +1,16 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth, { Awaitable, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prisma from "@/libs/prismaClient";
+import { compare } from "bcrypt";
 
-const AuthOptions: NextAuthOptions = {
-    adapter: {},
+export const AuthOptions: NextAuthOptions = {
+    adapter: PrismaAdapter(prisma),
     session: {
         strategy: "jwt",
+    },
+    pages: {
+        signIn: "/login",
     },
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
@@ -19,67 +25,54 @@ const AuthOptions: NextAuthOptions = {
                 email: {
                     label: "Email",
                     type: "email",
-                    placeholder: ""
+                    placeholder: "",
                 },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials): Promise<any> {
                 // Add logic here to look up the user from the credentials supplied
-                const { username, email, password } = credentials as {
-                    username: string;
-                    email: string;
-                    password: string;
-                }
-                
-                if (!credentials?.email || !credentials.password) { return null}
-
-                // const passwordValidation = await bcrypt.compare(credentials.password, user.password)
-
-                const data = {
-                    username: username,
-                    email: email,
-                    password: password
-                }
-
-                const headers = new Headers({
-                    "Content-Type": "aplication/json"
-                })
-
-
-                
-                const user = {
-                    id: "1",
-                    name: "J Smith",
-                    email: "jsmith@example.com",
-                };
-
-                if (user) {
-                    // Any object returned will be saved in `user` property of the JWT
-                    return user;
-                } else {
-                    // If you return null then an error will be displayed advising the user to check their details.
+                if (!credentials?.email || !credentials.password) {
                     return null;
-
-                    // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
                 }
+
+                const existingUser = await prisma.user.findUnique({
+                    where: { email: credentials?.email },
+                });
+                if (!existingUser) {
+                    return null;
+                }
+
+                const passwordMatch = await compare(
+                    credentials.password,
+                    existingUser.password,
+                );
+                if (!passwordMatch) {
+                    return null;
+                }
+
+                return existingUser
             },
         }),
     ],
     callbacks: {
-        async jwt({ token, account, user }: any) {
+        async jwt({ token, user }) {
             if (user) {
-                token.user = user;
-                token.accessToken = user.access_token;
+                return {
+                    ...token,
+                    username: user.username
+                }
             }
             return token;
         },
-        async session({ session, token }: any) {
-            session.user = token.user;
-            return session;
-        }, 
-    },
-    pages: {
-        signIn: "/login",
+        async session({ session, token }) {
+            return {
+                ...session,
+                user: {
+                    ...session.user,
+                    username: token.username
+                }
+            }
+        },
     },
 };
 

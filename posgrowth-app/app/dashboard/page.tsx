@@ -1,11 +1,17 @@
+import { getServerSession } from 'next-auth'
+import { AuthOptions } from '../api/auth/[...nextauth]/route'
 import React from 'react'
-import { useSession } from 'next-auth/react'
-const DashboardPage = () => {
-  const { data: Session, status } = useSession()
-  console.log(Session, status)
+import User from '@/components/UI/User'
+const DashboardPage = async () => {
+  const session = await getServerSession(AuthOptions)
+
   return (
-    <div>DashboardPage
-      <h1></h1>
+    <div>
+      <h1>DashboardPage</h1>
+      <h2>Client Session</h2>
+      <User/>
+      <h2>Server Session</h2>
+      {JSON.stringify(session)}
     </div>
   )
 }
