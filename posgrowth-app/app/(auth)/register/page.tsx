@@ -1,9 +1,12 @@
-import React from 'react'
+import RegisterForm from "@/components/RegisterForm";
+import React, { FormEvent } from "react";
 
 const RegisterPage = () => {
-  return (
-    <div>RegisterPage</div>
-  )
-}
+    return (
+        <div className="max-w-3xl">
+            <RegisterForm />
+        </div>
+    );
+};
 
-export default RegisterPage
+export default RegisterPage;
