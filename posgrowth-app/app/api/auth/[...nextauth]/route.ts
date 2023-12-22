@@ -50,7 +50,7 @@ export const AuthOptions: NextAuthOptions = {
                     return null;
                 }
 
-                return existingUser
+                return existingUser;
             },
         }),
     ],
@@ -59,8 +59,8 @@ export const AuthOptions: NextAuthOptions = {
             if (user) {
                 return {
                     ...token,
-                    username: user.username
-                }
+                    username: user.username,
+                };
             }
             return token;
         },
@@ -69,9 +69,9 @@ export const AuthOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
-                    username: token.username
-                }
-            }
+                    username: token.username,
+                },
+            };
         },
     },
 };

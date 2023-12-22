@@ -13,39 +13,42 @@ import { ok } from "assert";
 type FormData = {
     email: string;
     password: string;
-}
+};
 
-const FormSchema = z
-    .object({
-        email: z
-            .string()
-            .min(1, "Email tidak boleh kosong")
-            .email("Gunakan email yang valid"),
-        password: z
-            .string()
-            .min(1, "Kata sandi tidak boleh kosong")
-            .min(8, "Kata sandi minimal 8 karakter")
-            .max(16, "Kata sandi maksimal sepanjang 16 karakter"),
-    })
+const FormSchema = z.object({
+    email: z
+        .string()
+        .min(1, "Email tidak boleh kosong")
+        .email("Gunakan email yang valid"),
+    password: z
+        .string()
+        .min(1, "Kata sandi tidak boleh kosong")
+        .min(8, "Kata sandi minimal 8 karakter")
+        .max(16, "Kata sandi maksimal sepanjang 16 karakter"),
+});
 
 const LoginForm = () => {
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors }} = useForm<FormData>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>({
         resolver: zodResolver(FormSchema),
-    })
-    
+    });
+
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         const signInData = await signIn("credentials", {
             email: data.email,
             password: data.password,
             redirect: false,
-        })
+        });
         if (signInData?.error) {
-            console.log(signInData.error)
+            console.log(signInData.error);
         } else {
-            router.push("/dashboard")
+            router.push("/dashboard");
         }
-    }
+    };
 
     // const form = useForm<z.infer<typeof FormSchema>>({
     //     resolver: zodResolver(FormSchema),
@@ -80,7 +83,6 @@ const LoginForm = () => {
     //         console.log("Registrasi gagal");
     //     }
     // };
-
 
     // const registerUser = async (event: FormEvent<HTMLFormElement>) => {
     //     event.preventDefault();

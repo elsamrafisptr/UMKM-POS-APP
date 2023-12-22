@@ -24,19 +24,38 @@ const TopBar = () => {
                     )}
                 </div>
                 <div className="w-[92px] md:w-auto">
-                    <Link
-                        href={"/signin"}
-                        className="text-gray-900 h-[43.5px] mr-4 rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium hover:bg-slate-200 hover:text-slate-900 duration-200"
-                    >
-                        Masuk
-                    </Link>
+                    {status === "authenticated" ? (
+                        <>
+                            <Link
+                                href={"/transaction"}
+                                className="px-4 py-3 rounded cursor-pointer  mr-4 capitalize font-medium text-white hover:text-white duration-200 bg-slate-900 hover:bg-slate-800"
+                            >
+                                Transaksi
+                            </Link>
+                            <button
+                                onClick={() => signOut()}
+                                className="border border-slate-900 h-[43.5px] rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium text-slate-900 hover:bg-slate-200 hover:text-slate-900 duration-200"
+                            >
+                                Log Out
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                href={"/login"}
+                                className="text-white h-[43.5px] mr-4 rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium hover:bg-slate-200 hover:text-slate-900 duration-200"
+                            >
+                                Masuk
+                            </Link>
 
-                    <Link
-                        href={"/signup"}
-                        className="px-6 py-3 rounded cursor-pointer capitalize font-semibold text-gray-900 hover:text-white duration-200 bg-white hover:bg-slate-800"
-                    >
-                        Daftar
-                    </Link>
+                            <Link
+                                href={"/register"}
+                                className="px-6 py-3 rounded cursor-pointer capitalize font-semibold text-gray-900 hover:text-white duration-200 bg-white hover:bg-slate-800"
+                            >
+                                Daftar
+                            </Link>
+                        </>
+                    )}
                 </div>
                 {/* {nav && (
                     <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">

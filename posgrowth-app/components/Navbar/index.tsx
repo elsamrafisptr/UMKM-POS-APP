@@ -6,7 +6,7 @@ import { List, X } from "@phosphor-icons/react";
 import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
-    const { data: session, status } = useSession()
+    const { data: session, status } = useSession();
     const [nav, setNav] = useState(false);
 
     const links = [

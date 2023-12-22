@@ -1,19 +1,9 @@
-export interface ProductProps {
+export interface ProductProps {}
 
-}
+export interface BlogProps {}
 
-export interface BlogProps {
+export interface EmployeeProps {}
 
-}
+export interface OutletProps {}
 
-export interface EmployeeProps {
-
-}
-
-export interface OutletProps {
-
-}
-
-export interface StatsProps {
-
-}
+export interface StatsProps {}

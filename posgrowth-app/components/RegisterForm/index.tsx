@@ -14,7 +14,7 @@ type FormData = {
     email: string;
     password: string;
     confirmPassword: string;
-}
+};
 
 const FormSchema = z
     .object({
@@ -37,25 +37,28 @@ const FormSchema = z
 
 const RegisterForm = () => {
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors }} = useForm<FormData>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>({
         resolver: zodResolver(FormSchema),
-    })
-    
+    });
+
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
             const headers = {
-                "Content-Type": "application/json"
-            }
-            const jsonData = JSON.stringify(data)
+                "Content-Type": "application/json",
+            };
+            const jsonData = JSON.stringify(data);
             const response = await axios.post("/api/auth/register", jsonData, {
-                headers
-            })
+                headers,
+            });
             if (response.status) {
-                console.log(response.data, response.status)
-                router.refresh()
-                router.push("/dashboard")
+                console.log(response.data, response.status);
+                router.refresh();
+                router.push("/dashboard");
             }
-
         } catch (error: any) {
             if (error.response.data.status == 404) {
                 return alert(error.response.data.message);
@@ -63,7 +66,7 @@ const RegisterForm = () => {
                 return alert(error.response.data.errors);
             }
         }
-    }
+    };
 
     // const form = useForm<z.infer<typeof FormSchema>>({
     //     resolver: zodResolver(FormSchema),
@@ -98,7 +101,6 @@ const RegisterForm = () => {
     //         console.log("Registrasi gagal");
     //     }
     // };
-
 
     // const registerUser = async (event: FormEvent<HTMLFormElement>) => {
     //     event.preventDefault();
