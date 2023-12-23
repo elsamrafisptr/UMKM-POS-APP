@@ -1,4 +1,6 @@
+import GridLayout from "@/components/GridLayout";
 import Navbar from "@/components/Navbar";
+import FaqSection from "@/pages/FAQSection";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +12,7 @@ export default function Home() {
             {/* Section Headline Start */}
             <div className="h-screen bg-gradient-to-br from-blue-700 to-sky-400 pt-16 md:pt-24 pb-6 grid grid-rows-2 gap-12">
                 <div className="mt-12 md:mt-6 px-5 md:px-16">
-                    <h1 className="text-6xl text-white font-semibold leading-tight py-2 max-w-3xl drop-shadow-lg">
+                    <h1 className="text-6xl text-white font-bold leading-tight py-2 max-w-3xl drop-shadow-lg">
                         Menjadi solusi{" "}
                         <span className="text-white block md:inline">
                             Naik Level
@@ -37,34 +39,17 @@ export default function Home() {
                         </Link>
                     </div>
                 </div>
-                {/* <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative">
-                      <Image
-                          src={"/img3.webp"}
-                          fill={true}
-                          style={{ objectFit: "cover" }}
-                          className="opacity-75 hover:opacity-100 duration-300 transition-opacity"
-                      />
-                  </div>
-                  <div className="relative">
-                      <Image
-                          src={"/img4.webp"}
-                          fill={true}
-                          style={{ objectFit: "cover" }}
-                          className="opacity-75 hover:opacity-100 duration-300 transition-opacity"
-                      />
-                  </div>
-              </div> */}
             </div>
             {/* Section Headline End */}
 
             {/* Section Tentang Kami Start */}
             <section className="pt-40 px-5 md:px-16">
                 <div className="flex flex-col">
-                    <h1 className="text-4xl font-bold leading-tight text-blue-950 lg:text-5xl md:text-center dark:text-neutral-50">
+                    <h1 className="text-4xl font-black leading-tight text-blue-950 lg:text-5xl md:text-center">
                         Kenapa Harus Bergabung Dengan Kami?
                     </h1>
-                    <div className="mt-12 md:mt-24 grid grid-cols-1 md:grid-cols-2">
+                    <GridLayout />
+                    {/* <div className="mt-12 md:mt-24 grid grid-cols-1 md:grid-cols-2">
                         <span className="">
                             <h2 className="text-2xl font-semibold">
                                 Tentang Kami
@@ -77,8 +62,8 @@ export default function Home() {
                                 id repellendus.
                             </p>
                         </span>
-                    </div>
-                    <div className="mt-12 md:mt-24">
+                    </div> */}
+                    {/* <div className="mt-12 md:mt-24">
                         <h2 className="text-2xl font-semibold flex justify-end">
                             Yuk mulai bergabung dengan UMKM lainnya!
                         </h2>
@@ -229,7 +214,7 @@ export default function Home() {
                                 </p>
                             </a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             {/* Section Tentang Kami End */}
@@ -242,12 +227,12 @@ export default function Home() {
 
             {/* FAQ */}
             <div className="mx-auto min-h-screen py-6 px-5 md:px-12">
-                {/* <FaqSection /> */}
+                <FaqSection />
             </div>
             {/* FAQ */}
 
             {/* Section Footer Start */}
-            <footer className="bg-gray-500 relative">
+            <footer className="bg-gradient-to-b from-blue-100 to-sky-200 relative">
                 {/* Section Final CTA Start */}
                 <div className="mx-auto w-full px-5 md:px-16 absolute -top-32">
                     <div className="w-full py-12 px-5 md:px-12 bg-gradient-to-tr from-blue-800 to-sky-400 rounded-2xl">
@@ -269,10 +254,10 @@ export default function Home() {
                     </div>
                 </div>
                 {/* Section Final CTA End */}
-                <div className="mx-auto max-w-screen-xl px-4 pt-52 pb-16 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-screen-xl px-4 pt-52 pb-16 sm:px-6 lg:px-8 ">
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 pb-10">
                         <div>
-                            <div className="text-white">
+                            <div className="text-blue-800">
                                 <svg
                                     className="h-8"
                                     viewBox="0 0 118 24"
@@ -322,10 +307,10 @@ export default function Home() {
                                 </svg>
                             </div>
 
-                            <p className="mt-4 max-w-xs text-gray-100">
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Esse non cupiditate quae nam
-                                molestias.
+                            <p className="mt-4 max-w-xs text-blue-800">
+                                Aplikasi Kasir dan Analisis usaha gratis untuk
+                                mempermudah dan meningkatkan kualitas UMKM di
+                                Indonesia.
                             </p>
 
                             <ul className="mt-8 flex gap-6">
@@ -334,7 +319,7 @@ export default function Home() {
                                         href="/"
                                         rel="noreferrer"
                                         target="_blank"
-                                        className="text-gray-200 transition hover:opacity-75"
+                                        className="text-blue-900 transition hover:opacity-75"
                                     >
                                         <span className="sr-only">
                                             Facebook
@@ -360,7 +345,7 @@ export default function Home() {
                                         href="/"
                                         rel="noreferrer"
                                         target="_blank"
-                                        className="text-gray-200 transition hover:opacity-75"
+                                        className="text-blue-900 transition hover:opacity-75"
                                     >
                                         <span className="sr-only">
                                             Instagram
@@ -386,7 +371,7 @@ export default function Home() {
                                         href="/"
                                         rel="noreferrer"
                                         target="_blank"
-                                        className="text-gray-200 transition hover:opacity-75"
+                                        className="text-blue-900 transition hover:opacity-75"
                                     >
                                         <span className="sr-only">GitHub</span>
 
@@ -409,131 +394,123 @@ export default function Home() {
 
                         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
                             <div>
-                                <p className="font-medium text-white">
-                                    Company
+                                <p className="font-medium text-blue-900">
+                                    Perusahaan Kami
                                 </p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            About{" "}
+                                            Tentang Kami{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Meet the Team{" "}
+                                            Tim Kami{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Accounts Review{" "}
+                                            Ulasan untuk Kami{" "}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <p className="font-medium text-white">
-                                    Helpful Links
+                                <p className="font-medium text-blue-900">
+                                    Tautan Bermanfaat
                                 </p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Contact{" "}
+                                            Kontak Kami{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
                                             FAQs{" "}
                                         </a>
                                     </li>
-
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
-                                        >
-                                            {" "}
-                                            Live Chat{" "}
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <p className="font-medium text-white">Legal</p>
+                                <p className="font-medium text-blue-900">
+                                    Legalitas
+                                </p>
 
                                 <ul className="mt-6 space-y-4 text-sm">
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Accessibility{" "}
+                                            Aksesibilitas{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Returns Policy{" "}
+                                            Peraturan dan Kebijakan{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Refund Policy{" "}
+                                            Peraturan Keuangan{" "}
                                         </a>
                                     </li>
 
                                     <li>
                                         <a
                                             href="#"
-                                            className="text-gray-100 transition hover:opacity-75"
+                                            className="text-blue-800 hover:underline transition-all duration-200 hover:opacity-75"
                                         >
                                             {" "}
-                                            Hiring Statistics{" "}
+                                            Karir{" "}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <hr className="" />
-                    <p className="text-xs flex justify-end text-white pt-4">
-                        &copy; 2022. Company Name. All rights reserved.
+                    {/* <hr /> */}
+                    <p className="text-sm flex justify-end font-medium text-blue-900 pt-4">
+                        &copy; 2023. POSGrowth. All rights reserved.
                     </p>
                 </div>
             </footer>

@@ -1,32 +1,17 @@
-import ProductCard from "@/components/ProductCard";
-import ProductTable from "@/components/ProductTable";
 import React from "react";
-import { ProductData } from "@/utils/dummyProductData";
-const ProductPage = () => {
+
+const TransactionHistoryPage = () => {
     return (
-        <section className="px-5 md:px-12 pt-12 flex flex-col gap-6">
+        <section className="px-12 pt-12 flex flex-col gap-6">
             <div>
-                <h1 className="font-bold text-2xl">Kelola Produk</h1>
+                <h1 className="font-bold text-2xl">Riwayat Transaksi</h1>
                 <p className="text-gray-500">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Blanditiis, numquam!
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {ProductData.slice(0, 9).map((input, index) => (
-                    <ProductCard
-                        key={index}
-                        title={input.title}
-                        image=""
-                        category={input.category}
-                        price={input.price}
-                        stock={input.stock}
-                    />
-                ))}
-            </div>
-            {/* <div>
-                <ProductTable />
-            </div> */}
+            <div></div>
+            <div></div>
             <div className="mb-6">
                 <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
                     <div className="text-sm text-gray-700">
@@ -51,7 +36,7 @@ const ProductPage = () => {
                             >
                                 <path
                                     stroke-linecap="round"
-                                    strokeLinejoin="round"
+                                    stroke-linejoin="round"
                                     d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
                                 />
                             </svg>
@@ -75,7 +60,7 @@ const ProductPage = () => {
                             >
                                 <path
                                     stroke-linecap="round"
-                                    strokeLinejoin="round"
+                                    stroke-linejoin="round"
                                     d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
                                 />
                             </svg>
@@ -87,4 +72,4 @@ const ProductPage = () => {
     );
 };
 
-export default ProductPage;
+export default TransactionHistoryPage;

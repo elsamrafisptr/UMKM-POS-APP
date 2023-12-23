@@ -130,12 +130,12 @@ const RegisterForm = () => {
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
                 <div className="hidden md:block w-full bg-slate-100 relative">
-                    {/* <Image
+                    <Image
                         src={"/img2.webp"}
                         layout="fill"
                         objectFit="cover"
                         alt={""}
-                    /> */}
+                    />
                 </div>
                 <div className="px-6 md:px-12 mx-auto my-auto">
                     <div className="w-full justify-between items-center h-12 flex gap-4">
@@ -149,7 +149,7 @@ const RegisterForm = () => {
                         <div className="text-right flex flex-col">
                             <p className="text-base">Sudah punya akun?</p>
                             <Link
-                                href={"/signin"}
+                                href={"/login"}
                                 className="text-base text-sky-600 underline cursor-pointer"
                             >
                                 Masuk ke Akun

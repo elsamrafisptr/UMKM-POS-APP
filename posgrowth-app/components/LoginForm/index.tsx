@@ -111,13 +111,17 @@ const LoginForm = () => {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
-                <div className="hidden md:block w-full bg-slate-100 relative">
-                    {/* <Image
-                        src={"/img2.webp"}
+                <div className="hidden relative md:block w-full bg-slate-100">
+                    <h1 className="z-50 absolute bottom-4 left-4 text-white font-bold text-2xl">
+                        Halo gais
+                    </h1>
+                    <Image
+                        src={"/img1.webp"}
                         layout="fill"
                         objectFit="cover"
                         alt={""}
-                    /> */}
+                        objectPosition="left"
+                    />
                 </div>
                 <div className="px-6 md:px-12 mx-auto my-auto">
                     <div className="w-full justify-between items-center h-12 flex gap-4">

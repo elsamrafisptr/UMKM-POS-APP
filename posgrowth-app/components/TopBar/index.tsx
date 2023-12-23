@@ -10,7 +10,7 @@ const TopBar = () => {
     const [nav, setNav] = useState(false);
 
     return (
-        <nav className="mx-auto sticky top-0 w-full h-[72px] bg-blue-500 backdrop-blur-lg z-50">
+        <nav className="mx-auto sticky top-0 w-full h-[72px] bg-white backdrop-blur-lg z-50">
             {/* Desktop Menu */}
             <div className="flex items-center justify-between lg:justify-end h-full px-5 md:px-12 w-full">
                 <div
@@ -28,13 +28,13 @@ const TopBar = () => {
                         <>
                             <Link
                                 href={"/transaction"}
-                                className="px-4 py-3 rounded cursor-pointer  mr-4 capitalize font-medium text-white hover:text-white duration-200 bg-slate-900 hover:bg-slate-800"
+                                className="px-4 py-3 rounded cursor-pointer  mr-4 capitalize font-medium text-white hover:text-white duration-200 bg-blue-500 hover:bg-blue-700"
                             >
-                                Transaksi
+                                Tambah Transaksi
                             </Link>
                             <button
                                 onClick={() => signOut()}
-                                className="border border-slate-900 h-[43.5px] rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium text-slate-900 hover:bg-slate-200 hover:text-slate-900 duration-200"
+                                className="border border-red-600 h-[43.5px] rounded hidden md:inline-flex justify-center bg-white items-center w-[91.63px] cursor-pointer capitalize font-medium text-red-600 hover:bg-gray-100 duration-200"
                             >
                                 Log Out
                             </button>

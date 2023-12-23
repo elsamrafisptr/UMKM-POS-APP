@@ -6,56 +6,103 @@
 import React from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-const index = () => {
-    const { status, data: session } = useSession<boolean>();
+const SideBar = () => {
+    const pathName = usePathname();
+    const { status, data: session } = useSession();
     console.log(session, status);
     return (
         <>
-            <aside className="hidden md:block py-[72px] px-8 w-full flex-none md:w-80 bg-blue-500">
-                <div className="flex flex-col gap-3">
-                    <div className="w-full h-36 bg-white flex flex-col">
-                        <span className="font-semibold">
-                            {session?.user?.name}
+            <aside className="hidden md:block py-[72px] px-8 w-full flex-none md:w-80 bg-gradient-to-r from-gray-50 to-white overflow-y-scroll">
+                <div className="flex flex-col gap-4">
+                    <div className="w-full rounded p-4 flex flex-col items-center justify-center gap-1 mb-2">
+                        <div className="w-20 flex justify-center items-center h-20 rounded-full bg-sky-200">
+                            Foto
+                        </div>
+                        <span className="font-bold text-lg">
+                            {session?.user.username}
                         </span>
-                        <span className="truncate">{}</span>
-                        <Link href={`/`}>Edit Profil</Link>
+                        <span className="text-gray-500">
+                            {session?.user.email}
+                        </span>
                     </div>
-                    <div className="w-full h-12 bg-white">
-                        <Link href={`/dashboard`}>
-                            Ini halaman utama dashboard
-                        </Link>
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        <Link href={`/dashboard/management/product`}>
-                            Ini buat product
-                        </Link>
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        <Link href={`/dashboard//management/employee`}>
-                            Ini buat pegawai
-                        </Link>
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        <Link href={`/dashboard//management/outlet`}>
-                            Ini buat outlet
-                        </Link>
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        ini tombol Laporan
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        <Link href={`/dashboard/management/product`}>
-                            Riwayat Transaksi
-                        </Link>
-                    </div>
-                    <div className="w-full h-12 bg-white">
-                        ini tombol bantuan
-                    </div>
+                    <Link
+                        href={`/dashboard`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Dashboard
+                    </Link>
+                    <Link
+                        href={`/dashboard/management/product`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/management/product"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Kelola Produk
+                    </Link>
+                    <Link
+                        href={`/dashboard//management/employee`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/management/employee"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Manajemen Pegawai
+                    </Link>
+                    <Link
+                        href={`/dashboard/management/outlet`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/management/outlet"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Kelola Outlet
+                    </Link>
+                    <Link
+                        href={`/dashboard/laporan`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/laporan"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Laporan
+                    </Link>
+                    <Link
+                        href={`/dashboard/transaction/history`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/transaction/history"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Riwayat Transaksi
+                    </Link>
+                    <Link
+                        href={`/dashboard/help`}
+                        className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
+                            pathName === "/dashboard/help"
+                                ? "bg-blue-500 text-white hover:bg-blue-700"
+                                : "hover:bg-gray-200"
+                        }`}
+                    >
+                        Butuh Bantuan?
+                    </Link>
+                    <div className="w-full bg-gray-200 h-40 rounded"></div>
                 </div>
             </aside>
         </>
     );
 };
 
-export default index;
+export default SideBar;
