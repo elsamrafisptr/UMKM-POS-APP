@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
     //     }} className="flex-col items-start justify-center min-h-screen"
     return (
-        <section className="mx-auto bg-blue-100">
+        <section className="mx-auto bg-blue-50">
             <Navbar />
             {/* Section Headline Start */}
             <div className="h-screen bg-gradient-to-br from-blue-700 to-sky-400 pt-16 md:pt-24 pb-6 grid grid-rows-2 gap-12">
@@ -232,7 +232,7 @@ export default function Home() {
             {/* FAQ */}
 
             {/* Section Footer Start */}
-            <footer className="bg-gradient-to-b from-blue-100 to-sky-200 relative">
+            <footer className="bg-gradient-to-b from-blue-50 to-sky-200 relative">
                 {/* Section Final CTA Start */}
                 <div className="mx-auto w-full px-5 md:px-16 absolute -top-32">
                     <div className="w-full py-12 px-5 md:px-12 bg-gradient-to-tr from-blue-800 to-sky-400 rounded-2xl">

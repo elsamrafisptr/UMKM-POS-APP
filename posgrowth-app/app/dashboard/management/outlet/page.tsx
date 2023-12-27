@@ -1,6 +1,34 @@
+import { GetSessionParams, getSession } from "next-auth/react";
 import React from "react";
+import prisma from "@/libs/prismaClient";
+import { NextApiRequest } from "next";
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const OutletPage = () => {
+const getOutlet = async (userSession: string) => {
+    const res = await prisma.outlet.findMany({
+        where: {
+            user: {username: userSession},
+        },
+        select: {
+            id: true,
+            name: true,
+            contact: true,
+            address: true,
+            createdAt: true,
+            user: true
+        },
+    });
+    return res;
+};
+
+
+
+const OutletPage = async() => {
+    const session = getServerSession(AuthOptions)
+    const userSession = JSON.stringify(session)
+    const outlets = await getOutlet(userSession)
+
     return (
         <section className="px-12 pt-12 flex flex-col gap-6">
             <div>
@@ -10,7 +38,17 @@ const OutletPage = () => {
                     Blanditiis, numquam!
                 </p>
             </div>
-            <div></div>
+            <div>
+                {outlets.map((input) => (
+                    <div key={input.id}>
+                        <h1>Nama outlet : {input.name}</h1>
+                        <p>PEMILIK : {input.user.username}</p>
+                        <p>alamat {input.address}</p>
+                        <p>kontak : {input.contact}</p>
+                        <p>terbentuk : {Number(input.createdAt)}</p>
+                    </div>
+                ))}
+            </div>
             <div></div>
             <div className="mb-6">
                 <div className="mt-6 sm:flex sm:items-center sm:justify-between ">

@@ -12,7 +12,6 @@ import { usePathname } from "next/navigation";
 const SideBar = () => {
     const pathName = usePathname();
     const { status, data: session } = useSession();
-    console.log(session, status);
     return (
         <>
             <aside className="hidden md:block py-[72px] px-8 w-full flex-none md:w-80 bg-gradient-to-r from-gray-50 to-white overflow-y-scroll">
@@ -27,6 +26,7 @@ const SideBar = () => {
                         <span className="text-gray-500">
                             {session?.user.email}
                         </span>
+                        <Link href={'/dashboard/profile'} className="text-sm text-sky-600">Edit Profil</Link>
                     </div>
                     <Link
                         href={`/dashboard`}
@@ -69,9 +69,9 @@ const SideBar = () => {
                         Kelola Outlet
                     </Link>
                     <Link
-                        href={`/dashboard/laporan`}
+                        href={`/dashboard/report`}
                         className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${
-                            pathName === "/dashboard/laporan"
+                            pathName === "/dashboard/report"
                                 ? "bg-blue-500 text-white hover:bg-blue-700"
                                 : "hover:bg-gray-200"
                         }`}

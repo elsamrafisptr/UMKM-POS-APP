@@ -27,7 +27,7 @@ const TopBar = () => {
                     {status === "authenticated" ? (
                         <>
                             <Link
-                                href={"/transaction"}
+                                href={"/dashboard/transaction"}
                                 className="px-4 py-3 rounded cursor-pointer  mr-4 capitalize font-medium text-white hover:text-white duration-200 bg-blue-500 hover:bg-blue-700"
                             >
                                 Tambah Transaksi

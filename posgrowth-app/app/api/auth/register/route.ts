@@ -55,7 +55,46 @@ export const POST = async (request: Request) => {
                 email,
                 password: hashedPassword,
             },
+            include: {
+                Outlet: true
+            }
         });
+
+        // create first outlet when user register
+        const outletName = `${username}'s Outlet`
+        const existingOutletByName = await prisma.outlet.findUnique({
+            where: {name: outletName}
+        })
+        if (existingOutletByName) {
+            return NextResponse.json(
+                {
+                    outlet: null,
+                    message: "Nama outlet ini sudah tersedia",
+                },
+                { status: 409 },
+            )
+        }
+        
+        const getUserId = await prisma.user.findUnique({
+            where: {id: newUser.id},
+            select: {
+                id: true
+            }
+        })
+
+        const getStringUserId: string = getUserId?.id!
+
+        const newOutlet = await prisma.outlet.create({
+            data: {
+                name: outletName,
+                user: { connect: {id: getStringUserId} }
+            },
+            include: {
+                product: true,
+                user: true
+            }
+            
+        })
 
         const { password: newUserPassword, ...rest } = newUser;
         return NextResponse.json(

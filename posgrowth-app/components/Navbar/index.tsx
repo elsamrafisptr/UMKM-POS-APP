@@ -82,19 +82,18 @@ const Navbar = () => {
                 <div className="w-[92px] md:w-auto">
                     {status === "authenticated" ? (
                         <>
-                            <button
-                                onClick={() => signOut()}
-                                className="border border-slate-900 h-[43.5px] mr-4 rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium text-slate-900 hover:bg-slate-200 hover:text-slate-900 duration-200"
-                            >
-                                Log Out
-                            </button>
-
                             <Link
                                 href={"/dashboard"}
-                                className="px-4 py-3 rounded cursor-pointer capitalize font-medium text-white hover:text-white duration-200 bg-slate-900 hover:bg-slate-800"
+                                className="px-4 py-3 rounded cursor-pointer mr-4 capitalize font-medium text-white hover:text-white duration-200 bg-slate-900 hover:bg-slate-800"
                             >
                                 Dashboard
                             </Link>
+                            <button
+                                onClick={() => signOut()}
+                                className="border border-red-700 h-[43.5px] rounded hidden md:inline-flex justify-center items-center w-[91.63px] cursor-pointer capitalize font-medium text-red-700 hover:bg-slate-200 hover:text-slate-900 duration-200"
+                            >
+                                Log Out
+                            </button>
                         </>
                     ) : (
                         <>
