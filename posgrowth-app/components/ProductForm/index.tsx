@@ -33,7 +33,7 @@ const ProductForm = () => {
         <>
             <form onSubmit={submitData} className="flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-1">
-                    <label className="font-semibold text-sm">Product Name</label>
+                    <label className="font-semibold text-sm">Nama Produk</label>
                     <input
                         type="text"
                         value={name}
@@ -43,7 +43,7 @@ const ProductForm = () => {
                     />
                 </div>
                 <div className="w-full flex flex-col gap-1">
-                    <label className="font-semibold text-sm">Kategory</label>
+                    <label className="font-semibold text-sm">Kategori</label>
                     <input
                         type="text"
                         value={category}

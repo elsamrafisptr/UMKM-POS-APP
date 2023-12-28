@@ -22,7 +22,11 @@ const getProducts = async (req: NextApiRequest) => {
             category: true,
             price: true,
             stock: true,
-            outlet: true,
+            outlet: {
+                include: {
+                    user: true
+                }
+            },
         },
     });
     return res;
@@ -33,18 +37,16 @@ const ProductPage = async (req: NextApiRequest) => {
     // const userSession = await getSession({ req });
     const products = await getProducts(req);
     const session = await getServerSession(AuthOptions)
-    const user = session?.user.id
-
-    
-    console.log(user);
+    const userName = products.map(input => input.outlet.user.username)
+    const user = JSON.stringify(session).includes(`${userName[0]}`)
+    console.log(userName)
     return (
         <Dialog>
             <section className="px-5 md:px-12 pt-12 flex flex-col gap-6">
                 <div>
                     <h1 className="font-bold text-2xl">Kelola Produk</h1>
                     <p className="text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Blanditiis, numquam!
+                        Manajemen produk menambah, mengedit dan menghapus produk pada outlet anda
                     </p>
                 </div>
                 <div className="flex justify-between items-center mt-4 gap-x-3">
@@ -112,7 +114,7 @@ const ProductPage = async (req: NextApiRequest) => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {products.map((input, index) => (
+                    {/* {products.map((input, index) => (
                         <ProductCard
                             key={input.id}
                             id={input.id}
@@ -141,8 +143,8 @@ const ProductPage = async (req: NextApiRequest) => {
                         //         </section>
                         //     )}
                         // </>
-                    ))}
-                    {/* {cek[0] === userSession?.user.id! ? (
+                    ))} */}
+                    {user ? (
                         <>
                             {products.map((input, index) => (
                                 <ProductCard
@@ -157,15 +159,15 @@ const ProductPage = async (req: NextApiRequest) => {
                             ))}
                         </>
                     ) : (
-                        <>
-                            <h1>Tidak ada produk</h1>
-                        </>
-                    )} */}
+                        <div className="col-span-3 w-full h-48 flex justify-center items-center">
+                            <h1 className="w-full font-bold text-center">Tidak ada produk dalam outlet ini</h1>
+                        </div>
+                    )}
                 </div>
                 {/* <div>
                 <ProductTable />
             </div> */}
-                <div className="mb-6">
+                {/* <div className="mb-6">
                     <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
                         <div className="text-sm text-gray-700">
                             Page{" "}
@@ -220,7 +222,7 @@ const ProductPage = async (req: NextApiRequest) => {
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
             <DialogContent className="max-w-xl">
                 <ProductForm />

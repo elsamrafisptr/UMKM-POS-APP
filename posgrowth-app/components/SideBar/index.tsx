@@ -9,6 +9,8 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+
+
 const SideBar = () => {
     const pathName = usePathname();
     const { status, data: session } = useSession();

@@ -1,19 +1,19 @@
 import React from "react";
 
-const Stats = () => {
+const Stats = (props: {title: string}) => {
     return (
         <>
             <article className="grid grid-cols-4 gap-4 rounded-lg border border-gray-100 bg-white p-6">
                 <div className="col-span-3">
                     <strong className="block text-sm font-medium mb-1 text-gray-500">
                         {" "}
-                        Pendapatan Hari Ini{" "}
+                        {props.title}{" "}
                     </strong>
 
                     <p>
                         <span className="text-2xl font-semibold text-gray-900">
                             {" "}
-                            Rp 9.000.000{" "}
+                            Rp -{" "}
                         </span>
                     </p>
                 </div>
@@ -33,7 +33,7 @@ const Stats = () => {
                         />
                     </svg>
 
-                    <span className="text-xs font-medium"> 67.81% </span>
+                    <span className="text-xs font-medium">00.00% </span>
                 </div>
             </article>
         </>
