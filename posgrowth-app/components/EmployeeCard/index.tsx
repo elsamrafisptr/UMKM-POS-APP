@@ -4,8 +4,6 @@ import { EmployeeDataType } from "@/utils/dummyEmployeeData";
 import DeleteEmployee, { EmployeeType } from "./deleteEmployee";
 import UpdateEmployee from "./updateEmployee";
 
-
-
 const EmployeeCard = (props: EmployeeType) => {
     return (
         <div className="p-4 bg-white grid grid-cols-3 gap-2 rounded">
@@ -24,7 +22,7 @@ const EmployeeCard = (props: EmployeeType) => {
             </span>
             <span>
                 <UpdateEmployee employee={props} />
-                <DeleteEmployee employee={props}/>
+                <DeleteEmployee employee={props} />
             </span>
         </div>
     );

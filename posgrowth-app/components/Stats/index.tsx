@@ -1,6 +1,6 @@
 import React from "react";
 
-const Stats = (props: {title: string}) => {
+const Stats = (props: { title: string }) => {
     return (
         <>
             <article className="grid grid-cols-4 gap-4 rounded-lg border border-gray-100 bg-white p-6">

@@ -51,9 +51,13 @@ const EmployeeForm = () => {
                 "Content-Type": "application/json",
             };
             const jsonData = JSON.stringify(data);
-            const response = await axios.post("/api/employee/register", jsonData, {
-                headers,
-            });
+            const response = await axios.post(
+                "/api/employee/register",
+                jsonData,
+                {
+                    headers,
+                },
+            );
             if (response.status) {
                 console.log(response.data, response.status);
                 router.refresh();

@@ -30,7 +30,12 @@ const SideBar = () => {
                         <span className="text-gray-500">
                             {session?.user.email}
                         </span>
-                        <Link href={'/dashboard/profile'} className="text-sm text-sky-600">Edit Profil</Link>
+                        <Link
+                            href={"/dashboard/profile"}
+                            className="text-sm text-sky-600"
+                        >
+                            Edit Profil
+                        </Link>
                     </div>
                     {}
                     <Link

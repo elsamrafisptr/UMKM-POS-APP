@@ -1,7 +1,7 @@
 export type EmployeeDataType = {
-    username: string | null ;
+    username: string | null;
     email: string | null;
-    address: string
+    address: string;
     telNumber: string;
 };
 

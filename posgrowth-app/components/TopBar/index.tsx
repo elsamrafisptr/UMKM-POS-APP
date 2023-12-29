@@ -23,7 +23,7 @@ const TopBar = () => {
                         <List size={32} color="black" />
                     )}
                 </div>
-                <div className="w-[92px] md:w-auto">
+                <div className=" md:w-auto">
                     {status === "authenticated" ? (
                         <>
                             <Link

@@ -17,9 +17,9 @@ const DashboardPage = async () => {
             <div className="w-full py-4 px-6">
                 <h1 className="text-xl font-bold mb-4">Laporan Penjualan</h1>
                 <span className="grid grid-cols-3 gap-6">
-                    <Stats title="Pendapatan Hari Ini"/>
-                    <Stats title="Pendapatan Bulan Ini"/>
-                    <Stats title="Pendapatan Total"/>
+                    <Stats title="Pendapatan Hari Ini" />
+                    <Stats title="Pendapatan Bulan Ini" />
+                    <Stats title="Pendapatan Total" />
                 </span>
             </div>
             <div className="w-full py-4 grid grid-cols-5 px-6 gap-6">

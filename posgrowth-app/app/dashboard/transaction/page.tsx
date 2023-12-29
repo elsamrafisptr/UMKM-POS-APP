@@ -2,28 +2,61 @@ import React from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/UI/dialog";
 import { Product } from "@prisma/client";
 import { ObjectEnumValue } from "@prisma/client/runtime/library";
+import CartProduct from "@/components/CartProduct";
+import prisma from "@/libs/prismaClient";
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import ProductCard from "@/components/ProductCard";
 
 type Transaction = {
-    id: string
-    employeeName: string
-    outletName: string
-    products: Product[]
-    totalAmount: number
-    paymentMethod: string
-    balance: number
-}
+    id: string;
+    employeeName: string;
+    outletName: string;
+    products: Product[];
+    totalAmount: number;
+    paymentMethod: string;
+    balance: number;
+};
 
 const calculateTotal = (objectArray: Product[]) => {
     let totalAmount = 0;
 
     for (let i = 0; i < objectArray.length; i++) {
-        const priceAmount = objectArray[i].price
-        totalAmount += priceAmount
+        const priceAmount = objectArray[i].price;
+        totalAmount += priceAmount;
     }
-    return totalAmount
-}
+    return totalAmount;
+};
 
-const TransactionPage = () => {
+const getProducts = async (userSessionName: string) => {
+    // const userSession = await getSession({ req });
+    const res = await prisma.product.findMany({
+        where: {
+            outlet: { userId: userSessionName },
+        },
+        select: {
+            id: true,
+            name: true,
+            category: true,
+            price: true,
+            stock: true,
+            outlet: {
+                include: {
+                    user: true,
+                },
+            },
+        },
+    });
+    return res;
+};
+
+const TransactionPage = async () => {
+    const productsClicked: Product[] = [];
+    const session = await getServerSession(AuthOptions);
+    const products = await getProducts(session?.user.id!);
+    const userName = products.map((input) => input.outlet.user.username);
+    const user = JSON.stringify(session).includes(`${userName[0]}`);
+
     return (
         <div>
             <Dialog>
@@ -66,74 +99,94 @@ const TransactionPage = () => {
                                 </div>
                                 <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
                                     <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
                                     >
-                                        <g clip-path="url(#clip0_3098_154395)">
-                                            <path
-                                                d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
-                                                stroke="currentColor"
-                                                stroke-width="1.67"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_3098_154395">
-                                                <rect
-                                                    width="20"
-                                                    height="20"
-                                                    fill="white"
-                                                />
-                                            </clipPath>
-                                        </defs>
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+                                        />
                                     </svg>
 
                                     <p>Kategori</p>
                                 </button>
                             </div>
-                            <div className="mt-6 grid grid-cols-1 md:grid-cols-3">cek</div>
+                            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {user ? (
+                                    <>
+                                        {products.map((input, index) => (
+                                            <ProductCard
+                                                key={input.id}
+                                                id={input.id}
+                                                name={input.name}
+                                                category={input.category}
+                                                image=""
+                                                price={input.price}
+                                                stock={input.stock}
+                                            />
+                                        ))}
+                                    </>
+                                ) : (
+                                    <div className="col-span-3 w-full h-48 flex justify-center items-center">
+                                        <h1 className="w-full font-bold text-center">
+                                            Tidak ada produk dalam outlet ini
+                                        </h1>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <div className="col-span-1 bg-red-100 h-80">
-                            <h1 className="font-bold text-lg">Order Saat Ini</h1>
+                        <div className="col-span-1 bg-white pb-6">
+                            <h1 className="font-bold text-lg px-5 py-4">
+                                Order Saat Ini
+                            </h1>
                             {/* Card nambah barang */}
-                            <div>
-
+                            <div className="flex flex-col gap-4 px-5">
+                                {products.map((input) => (
+                                    <>
+                                        <CartProduct
+                                            key={input.id}
+                                            id={input.id}
+                                            name={input.name}
+                                            category={input.category}
+                                            price={input.price}
+                                            stock={input.stock}
+                                            image=""
+                                        />
+                                    </>
+                                ))}
                             </div>
                             {/* Invoice */}
-                            <div>
-
-                            </div>
-                            {/* create transaksi */}
-                            <button>
-
-                            </button>
-                        </div>
-
-                        {/* {user ? (
-                            <>
-                                {products.map((input, index) => (
-                                    <ProductCard
-                                        key={input.id}
-                                        id={input.id}
-                                        name={input.name}
-                                        category={input.category}
-                                        image=""
-                                        price={input.price}
-                                        stock={input.stock}
-                                    />
-                                ))}
-                            </>
-                        ) : (
-                            <div className="col-span-3 w-full h-48 flex justify-center items-center">
-                                <h1 className="w-full font-bold text-center">
-                                    Tidak ada produk dalam outlet ini
+                            <div className="bg-gray-200 px-2 py-4 mx-5 mt-6 grid grid-cols-2 gap-1">
+                                <p>Subtotal</p>
+                                <h1 className="text-right font-medium">
+                                    Rp Subtotal
+                                </h1>
+                                <p>Diskon</p>
+                                <h1 className="text-right font-medium">
+                                    Rp Diskon
+                                </h1>
+                                <p>Biaya pajak</p>
+                                <h1 className="text-right font-medium">
+                                    Rp Pajak
+                                </h1>
+                                <p className="col-span-2 h-0.5 bg-gray-600 my-1"></p>
+                                <h1 className="font-bold text-lg">Total</h1>
+                                <h1 className="font-bold text-lg text-right">
+                                    Rp Total
                                 </h1>
                             </div>
-                        )} */}
+                            {/* create transaksi */}
+                            <div className="w-full px-5 mt-6">
+                                <button className="px-5 w-full justify-center py-2 text-white transition-colors duration-200 bg-blue-500 rounded hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                                    Bayar
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <DialogContent className="max-w-xl">

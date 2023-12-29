@@ -75,11 +75,17 @@ const ProductForm = () => {
 
                 <div className="mt-2 w-full flex justify-end">
                     {!isLoading ? (
-                        <button type="submit" className="px-5 py-2 bg-blue-600 text-white w-auto flex justify-center rounded">
+                        <button
+                            type="submit"
+                            className="px-5 py-2 bg-blue-600 text-white w-auto flex justify-center rounded"
+                        >
                             Simpan
                         </button>
                     ) : (
-                        <button type="button" className="px-5 py-2 bg-blue-600 text-white w-auto flex justify-center rounded">
+                        <button
+                            type="button"
+                            className="px-5 py-2 bg-blue-600 text-white w-auto flex justify-center rounded"
+                        >
                             Menyimpan...
                         </button>
                     )}

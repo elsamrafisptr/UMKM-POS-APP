@@ -1,11 +1,11 @@
 export type OutletDataType = {
-    name: string
-    address: string
-}
+    name: string;
+    address: string;
+};
 
 export const OutletData: OutletDataType[] = [
     {
         name: "Cabang Pertama",
-        address: "Bandung"
-    }
-]
+        address: "Bandung",
+    },
+];

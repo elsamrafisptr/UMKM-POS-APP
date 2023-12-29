@@ -31,8 +31,8 @@ const ProductCard = (props: ProductType) => {
     };
 
     return (
-        <div className="p-4 bg-white grid grid-cols-3 gap-2 rounded">
-            <span className="col-span-1 relative h-full w-full">
+        <div className="p-4 bg-white flex flex-col gap-2 rounded-lg">
+            <span className="relative w-full h-48 rounded overflow-hidden">
                 <Image
                     src={"/img3.webp"}
                     alt=""
@@ -42,9 +42,9 @@ const ProductCard = (props: ProductType) => {
                 />
             </span>
             <span className="flex flex-col gap-0.5 col-span-2">
-                <h1 className="font-medium">{props.name}</h1>
+                <h1 className="font-bold">{props.name}</h1>
                 <p className="text-sm text-gray-700">{props.category}</p>
-                <h2 className="font-bold text-lg text-green-800">
+                <h2 className="font-extrabold text-lg text-blue-600">
                     Rp {`${props.price}`}
                 </h2>
                 <p className="text-sm">Stok: {`${props.stock}`}</p>

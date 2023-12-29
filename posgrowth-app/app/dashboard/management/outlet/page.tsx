@@ -24,13 +24,12 @@ const getOutlet = async (userSessionName: string) => {
 };
 
 const OutletPage = async (req: NextApiRequest) => {
-    
     const session = await getServerSession(AuthOptions);
     const outlets = await getOutlet(session?.user.username!);
     const userName = outlets.map((input) => input.user.username);
-    let i = 0
+    let i = 0;
     const userSession = JSON.stringify(session).includes(`${userName[i]}`);
-    console.log(session?.user.username)
+    console.log(session?.user.username);
 
     return (
         <section className="px-12 pt-12 flex flex-col gap-6">
@@ -45,16 +44,15 @@ const OutletPage = async (req: NextApiRequest) => {
                 {userSession ? (
                     <>
                         {outlets.map((input) => (
-                        <div key={input.id}>
-                            <h1>Nama outlet : {input.name}</h1>
-                            <p>PEMILIK : {input.user.username}</p>
-                            <p>alamat {input.address}</p>
-                            <p>kontak : {input.contact}</p>
-                            <p>terbentuk : {Number(input.createdAt)}</p>
-                        </div>
-                    ))}
+                            <div key={input.id}>
+                                <h1>Nama outlet : {input.name}</h1>
+                                <p>PEMILIK : {input.user.username}</p>
+                                <p>alamat {input.address}</p>
+                                <p>kontak : {input.contact}</p>
+                                <p>terbentuk : {Number(input.createdAt)}</p>
+                            </div>
+                        ))}
                     </>
-                    
                 ) : (
                     <>
                         <h1>tidak ada outlet</h1>
