@@ -10,11 +10,11 @@ import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Product } from "@prisma/client";
 import { ProductProps } from "@/utils/PropsInterface";
 
-const getProducts = async (req: NextApiRequest) => {
-    const userSession = await getSession({ req });
+const getProducts = async (userSessionName: string) => {
+    // const userSession = await getSession({ req });
     const res = await prisma.product.findMany({
         where: {
-            outlet: { userId: userSession?.user.id },
+            outlet: { userId: userSessionName },
         },
         select: {
             id: true,
@@ -34,12 +34,11 @@ const getProducts = async (req: NextApiRequest) => {
 
 const ProductPage = async (req: NextApiRequest) => {
     // const userSession = await getSession({ req });
-    const products = await getProducts(req);
+    
     const session = await getServerSession(AuthOptions);
+    const products = await getProducts(session?.user.id!);
     const userName = products.map((input) => input.outlet.user.username);
     const user = JSON.stringify(session).includes(`${userName[0]}`);
-    console.log(userName);
-    console.log(user);
 
     return (
         <Dialog>

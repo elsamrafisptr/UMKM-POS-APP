@@ -5,11 +5,11 @@ import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const getOutlet = async (req: NextApiRequest) => {
-    const userSession = await getSession({ req });
+const getOutlet = async (userSessionName: string) => {
+    // const userSession = await getSession({ req });
     const res = await prisma.outlet.findMany({
         where: {
-            user: { username: userSession?.user.username },
+            user: { username: userSessionName },
         },
         select: {
             id: true,
@@ -24,12 +24,13 @@ const getOutlet = async (req: NextApiRequest) => {
 };
 
 const OutletPage = async (req: NextApiRequest) => {
-    const outlets = await getOutlet(req);
+    
     const session = await getServerSession(AuthOptions);
+    const outlets = await getOutlet(session?.user.username!);
     const userName = outlets.map((input) => input.user.username);
     let i = 0
     const userSession = JSON.stringify(session).includes(`${userName[i]}`);
-    console.log(userSession)
+    console.log(session?.user.username)
 
     return (
         <section className="px-12 pt-12 flex flex-col gap-6">

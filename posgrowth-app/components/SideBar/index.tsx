@@ -8,12 +8,14 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
-
+import { getUserEmployee } from "@/libs/getUser";
 
 const SideBar = () => {
     const pathName = usePathname();
     const { status, data: session } = useSession();
+    // const strictName = session?.user.username
+    // const employeeCheck = getUserEmployee(strictName!)
+    // console.log(employeeCheck)
     return (
         <>
             <aside className="hidden md:block py-[72px] px-8 w-full flex-none md:w-80 bg-gradient-to-r from-gray-50 to-white overflow-y-scroll">
@@ -30,6 +32,7 @@ const SideBar = () => {
                         </span>
                         <Link href={'/dashboard/profile'} className="text-sm text-sky-600">Edit Profil</Link>
                     </div>
+                    {}
                     <Link
                         href={`/dashboard`}
                         className={`w-full rounded py-3 px-4 font-medium  transition-all duration-200 ${

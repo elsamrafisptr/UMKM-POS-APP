@@ -83,20 +83,6 @@ export const POST = async (request: Request) => {
             }
         })
 
-        const getStringUserId: string = getUserId?.id!
-
-        const newOutlet = await prisma.outlet.create({
-            data: {
-                name: outletName,
-                user: { connect: {id: getStringUserId} }
-            },
-            include: {
-                product: true,
-                user: true
-            }
-            
-        })
-
         const { password: newUserPassword, ...rest } = newUser;
         return NextResponse.json(
             { user: rest, message: "User created" },
