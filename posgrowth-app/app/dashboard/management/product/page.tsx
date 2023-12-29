@@ -24,29 +24,31 @@ const getProducts = async (req: NextApiRequest) => {
             stock: true,
             outlet: {
                 include: {
-                    user: true
-                }
+                    user: true,
+                },
             },
         },
     });
     return res;
 };
 
-
 const ProductPage = async (req: NextApiRequest) => {
     // const userSession = await getSession({ req });
     const products = await getProducts(req);
-    const session = await getServerSession(AuthOptions)
-    const userName = products.map(input => input.outlet.user.username)
-    const user = JSON.stringify(session).includes(`${userName[0]}`)
-    console.log(userName)
+    const session = await getServerSession(AuthOptions);
+    const userName = products.map((input) => input.outlet.user.username);
+    const user = JSON.stringify(session).includes(`${userName[0]}`);
+    console.log(userName);
+    console.log(user);
+
     return (
         <Dialog>
             <section className="px-5 md:px-12 pt-12 flex flex-col gap-6">
                 <div>
                     <h1 className="font-bold text-2xl">Kelola Produk</h1>
                     <p className="text-gray-500">
-                        Manajemen produk menambah, mengedit dan menghapus produk pada outlet anda
+                        Manajemen produk menambah, mengedit dan menghapus produk
+                        pada outlet anda
                     </p>
                 </div>
                 <div className="flex justify-between items-center mt-4 gap-x-3">
@@ -103,7 +105,7 @@ const ProductPage = async (req: NextApiRequest) => {
                                 </defs>
                             </svg>
 
-                            <p>Import</p>
+                            <p>Kategori</p>
                         </button>
                     </div>
                     <DialogTrigger>
@@ -114,36 +116,6 @@ const ProductPage = async (req: NextApiRequest) => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* {products.map((input, index) => (
-                        <ProductCard
-                            key={input.id}
-                            id={input.id}
-                            name={input.name}
-                            category={input.category}
-                            image=""
-                            price={input.price}
-                            stock={input.stock}
-                        />
-                        // <>
-                        //     {input.outlet.userId === userSession?.user.id ? (
-                        //         <ProductCard
-                        //             key={input.id}
-                        //             id={input.id}
-                        //             name={input.name}
-                        //             category={input.category}
-                        //             image=""
-                        //             price={input.price}
-                        //             stock={input.stock}
-                        //         />
-                        //     ) : (
-                        //         <section key={index} className="w-full h-24 flex justify-center items-center">
-                        //             {index === 0 ? (
-                        //                 <h1 className="">Data Tidak Tersedia</h1>
-                        //             ) : null}
-                        //         </section>
-                        //     )}
-                        // </>
-                    ))} */}
                     {user ? (
                         <>
                             {products.map((input, index) => (
@@ -160,69 +132,12 @@ const ProductPage = async (req: NextApiRequest) => {
                         </>
                     ) : (
                         <div className="col-span-3 w-full h-48 flex justify-center items-center">
-                            <h1 className="w-full font-bold text-center">Tidak ada produk dalam outlet ini</h1>
+                            <h1 className="w-full font-bold text-center">
+                                Tidak ada produk dalam outlet ini
+                            </h1>
                         </div>
                     )}
                 </div>
-                {/* <div>
-                <ProductTable />
-            </div> */}
-                {/* <div className="mb-6">
-                    <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-                        <div className="text-sm text-gray-700">
-                            Page{" "}
-                            <span className="font-medium text-gray-700">
-                                1 of 10
-                            </span>
-                        </div>
-
-                        <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-                            <a
-                                href="#"
-                                className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 rtl:-scale-x-100"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                                    />
-                                </svg>
-
-                                <span>previous</span>
-                            </a>
-
-                            <a
-                                href="#"
-                                className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-                            >
-                                <span>Next</span>
-
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 rtl:-scale-x-100"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        strokeLinejoin="round"
-                                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                                    />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div> */}
             </section>
             <DialogContent className="max-w-xl">
                 <ProductForm />

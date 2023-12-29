@@ -4,19 +4,13 @@ import prisma from "@/libs/prismaClient";
 import { getSession } from "next-auth/react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/UI/dialog";
 import ProductForm from "@/components/ProductForm";
+import EmployeeForm from "@/components/EmployeeForm";
 
-const getProducts = async () => {
+const getEmployee = async () => {
     const userSession = await getSession();
-    const res = await prisma.product.findMany({
+    const res = await prisma.user.findMany({
         where: {
-            outlet: { userId: userSession?.user.id },
-        },
-        select: {
-            id: true,
-            name: true,
-            category: true,
-            price: true,
-            stock: true,
+            role: "Employee"
         },
     });
     return res;
@@ -25,15 +19,14 @@ const getProducts = async () => {
 const EmployeePage = async () => {
     // const products = await Promise.all([getProducts]);
     // const products = await Promise.all([getServerSideProps])
-    const products = await getProducts();
+    const products = await getEmployee();
     return (
         <Dialog>
             <section className="px-5 md:px-12 pt-12 flex flex-col gap-6">
                 <div>
-                    <h1 className="font-bold text-2xl">Kelola Produk</h1>
+                    <h1 className="font-bold text-2xl">Manajemen Pegawai</h1>
                     <p className="text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Blanditiis, numquam!
+                        Mendaftarkan pegawai yang bekerja pada outlet yang anda punya
                     </p>
                 </div>
                 <div className="flex justify-between items-center mt-4 gap-x-3">
@@ -90,91 +83,28 @@ const EmployeePage = async () => {
                                 </defs>
                             </svg>
 
-                            <p>Import</p>
+                            <p>Filter</p>
                         </button>
                     </div>
                     <DialogTrigger>
                         <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white transition-colors duration-200 bg-blue-500 rounded shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                            Tambah Produk
+                            Tambah Pegawai
                         </button>
                     </DialogTrigger>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {products.map((input, index) => (
-                        <ProductCard
-                            key={input.id}
-                            id={input.id}
-                            name={input.name}
-                            category={input.category}
-                            image=""
-                            price={input.price}
-                            stock={input.stock}
-                        />
+                        <div key={input.id}>
+                            <h1>{input.username}</h1>
+                            <p>{input.role}</p>
+                            
+                        </div>
                     ))}
                 </div>
-                {/* <div>
-                <ProductTable />
-            </div> */}
-                <div className="mb-6">
-                    <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-                        <div className="text-sm text-gray-700">
-                            Page{" "}
-                            <span className="font-medium text-gray-700">
-                                1 of 10
-                            </span>
-                        </div>
-
-                        <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-                            <a
-                                href="#"
-                                className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 rtl:-scale-x-100"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                                    />
-                                </svg>
-
-                                <span>previous</span>
-                            </a>
-
-                            <a
-                                href="#"
-                                className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-                            >
-                                <span>Next</span>
-
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 rtl:-scale-x-100"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        strokeLinejoin="round"
-                                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                                    />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </section>
-            <DialogContent className="max-w-xl">
-                <ProductForm />
+            <DialogContent className="max-w-lg">
+                <EmployeeForm />
             </DialogContent>
         </Dialog>
     );

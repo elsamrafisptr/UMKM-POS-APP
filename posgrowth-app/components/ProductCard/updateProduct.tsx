@@ -36,7 +36,7 @@ const UpdateProduct = ({ product }: { product: ProductType }) => {
     return (
         <Dialog>
             <DialogTrigger>
-                <button className="flex items-center justify-center w-1/2 py-1.5 text-sm text-blue-500 transition-colors duration-200 rounded shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                <button className="flex items-center justify-center w-1/2 py-1.5 text-sm text-blue-500 transition-colors duration-200 rounded shrink-0 sm:w-auto gap-x-2">
                     Edit
                 </button>
             </DialogTrigger>

@@ -5,10 +5,11 @@ import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const getOutlet = async (userSession: string) => {
+const getOutlet = async (req: NextApiRequest) => {
+    const userSession = await getSession({ req });
     const res = await prisma.outlet.findMany({
         where: {
-            user: {username: userSession},
+            user: { username: userSession?.user.username },
         },
         select: {
             id: true,
@@ -16,18 +17,19 @@ const getOutlet = async (userSession: string) => {
             contact: true,
             address: true,
             createdAt: true,
-            user: true
+            user: true,
         },
     });
     return res;
 };
 
-
-
-const OutletPage = async() => {
-    const session = getServerSession(AuthOptions)
-    const userSession = JSON.stringify(session)
-    const outlets = await getOutlet(userSession)
+const OutletPage = async (req: NextApiRequest) => {
+    const outlets = await getOutlet(req);
+    const session = await getServerSession(AuthOptions);
+    const userName = outlets.map((input) => input.user.username);
+    let i = 0
+    const userSession = JSON.stringify(session).includes(`${userName[i]}`);
+    console.log(userSession)
 
     return (
         <section className="px-12 pt-12 flex flex-col gap-6">
@@ -39,15 +41,24 @@ const OutletPage = async() => {
                 </p>
             </div>
             <div>
-                {outlets.map((input) => (
-                    <div key={input.id}>
-                        <h1>Nama outlet : {input.name}</h1>
-                        <p>PEMILIK : {input.user.username}</p>
-                        <p>alamat {input.address}</p>
-                        <p>kontak : {input.contact}</p>
-                        <p>terbentuk : {Number(input.createdAt)}</p>
-                    </div>
-                ))}
+                {userSession ? (
+                    <>
+                        {outlets.map((input) => (
+                        <div key={input.id}>
+                            <h1>Nama outlet : {input.name}</h1>
+                            <p>PEMILIK : {input.user.username}</p>
+                            <p>alamat {input.address}</p>
+                            <p>kontak : {input.contact}</p>
+                            <p>terbentuk : {Number(input.createdAt)}</p>
+                        </div>
+                    ))}
+                    </>
+                    
+                ) : (
+                    <>
+                        <h1>tidak ada outlet</h1>
+                    </>
+                )}
             </div>
             <div></div>
             <div className="mb-6">
