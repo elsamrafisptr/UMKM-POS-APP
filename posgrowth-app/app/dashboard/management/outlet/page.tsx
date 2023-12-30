@@ -40,16 +40,17 @@ const OutletPage = async (req: NextApiRequest) => {
                     Blanditiis, numquam!
                 </p>
             </div>
-            <div>
+            <div className="grid grid-cols-2">
                 {userSession ? (
                     <>
                         {outlets.map((input) => (
-                            <div key={input.id}>
-                                <h1>Nama outlet : {input.name}</h1>
-                                <p>PEMILIK : {input.user.username}</p>
-                                <p>alamat {input.address}</p>
+                            <div key={input.id} className="bg-white p-4 rounded">
+                                <h1 className="font-bold">Nama outlet : {input.name}</h1>
+                                <p>Pemilik : {input.user.username}</p>
+                                <p className="text-xs text-gray-500">{Number(input.createdAt)}</p>
+                                <p>alamat :  {input.address}</p>
                                 <p>kontak : {input.contact}</p>
-                                <p>terbentuk : {Number(input.createdAt)}</p>
+                                
                             </div>
                         ))}
                     </>
@@ -60,7 +61,7 @@ const OutletPage = async (req: NextApiRequest) => {
                 )}
             </div>
             <div></div>
-            <div className="mb-6">
+            {/* <div className="mb-6">
                 <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
                     <div className="text-sm text-gray-700">
                         Page{" "}
@@ -115,7 +116,7 @@ const OutletPage = async (req: NextApiRequest) => {
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 };
