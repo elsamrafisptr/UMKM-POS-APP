@@ -39,9 +39,39 @@ const CartProduct = (props: ProductType) => {
                 <div className="flex flex-row justify-between">
                     <h1>Rp {props.price}</h1>
                     <span className="flex flex-row gap-1">
-                        <button onClick={handleClick2}>min</button>
+                        <button onClick={handleClick2}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-red-500"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
+                        </button>
                         <h1 className="font-bold">{counter}</h1>
-                        <button onClick={handleClick1}>plus</button>
+                        <button onClick={handleClick1}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-blue-500"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
+                        </button>
                     </span>
                 </div>
             </div>

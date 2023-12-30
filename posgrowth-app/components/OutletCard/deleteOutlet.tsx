@@ -2,17 +2,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ProductType } from ".";
 import { Dialog, DialogContent, DialogTrigger } from "../UI/dialog";
+import { OutletType } from ".";
 
-const DeleteProduct = ({ product }: { product: ProductType }) => {
+const DeleteOutlet = ({ outlet }: { outlet: OutletType }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
-    const handleDelete = async (productId: string) => {
+    const handleDelete = async (outletId: string) => {
         setIsLoading(true);
-        await axios.delete(`/api/products/${productId}`);
+        await axios.delete(`/api/outlet/${outletId}`);
         setIsLoading(false);
         router.refresh();
     };
@@ -25,15 +25,15 @@ const DeleteProduct = ({ product }: { product: ProductType }) => {
                 </button>
             </DialogTrigger>
             <DialogContent>
-                <h1 className="w-full flex justify-center text-center">
+                <h1 className="">
                     Apa anda yakin untuk menghapus{" "}
-                    <span className="font-bold">{product.name}</span> ?
+                    <span className="font-bold">{outlet.name}</span> ?
                 </h1>
                 <div className="mt-2 w-full flex justify-center">
                     {!isLoading ? (
                         <button
                             type="button"
-                            onClick={() => handleDelete(product.id)}
+                            onClick={() => handleDelete(outlet.id)}
                             className="px-5 py-2 bg-red-600 text-white w-auto flex justify-center rounded"
                         >
                             Delete
@@ -52,4 +52,4 @@ const DeleteProduct = ({ product }: { product: ProductType }) => {
     );
 };
 
-export default DeleteProduct;
+export default DeleteOutlet;

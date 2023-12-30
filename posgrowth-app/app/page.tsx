@@ -10,8 +10,8 @@ export default function Home() {
         <section className="mx-auto bg-blue-50">
             <Navbar />
             {/* Section Headline Start */}
-            <div className="h-screen bg-gradient-to-br from-blue-700 to-sky-400 pt-16 md:pt-24 pb-6 grid grid-rows-2 gap-12">
-                <div className="mt-12 md:mt-6 px-5 md:px-16">
+            <div className="h-screen bg-gradient-to-br from-blue-700 to-sky-400 pt-16 md:pt-24 pb-6 grid grid-rows-2 gap-12 relative">
+                <div className="mt-12 md:mt-6 px-5 md:px-16 ">
                     <h1 className="text-6xl text-white font-bold leading-tight py-2 max-w-3xl drop-shadow-lg">
                         Menjadi solusi{" "}
                         <span className="text-white block md:inline">
@@ -37,6 +37,9 @@ export default function Home() {
                         >
                             Tonton Video Demo
                         </Link>
+                    </div>
+                    <div className="absolute bottom-0 right-12">
+                        <Image src={"/hero-image.png"} alt="" width={800} height={720}/>
                     </div>
                 </div>
             </div>

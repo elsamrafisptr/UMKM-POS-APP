@@ -48,7 +48,7 @@ const ProductCard = (props: ProductType) => {
                     Rp {`${props.price}`}
                 </h2>
                 <p className="text-sm">Stok: {`${props.stock}`}</p>
-                <span className="flex flex-row gap-4 justify-end pr-2">
+                <span className="flex flex-row gap-2 justify-end pr-2">
                     <UpdateProduct product={props} />
                     <DeleteProduct product={props} />
                 </span>

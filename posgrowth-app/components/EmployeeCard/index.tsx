@@ -7,7 +7,7 @@ import UpdateEmployee from "./updateEmployee";
 const EmployeeCard = (props: EmployeeType) => {
     return (
         <div className="p-4 bg-white grid grid-cols-3 gap-2 rounded">
-            <span className="col-span-1 relative h-full w-full">
+            <span className="col-span-1 relative h-20 w-20">
                 <Image
                     src={"/img3.webp"}
                     alt=""
@@ -17,12 +17,12 @@ const EmployeeCard = (props: EmployeeType) => {
                 />
             </span>
             <span className="flex flex-col gap-0.5 col-span-2">
-                <h1 className="font-medium">{props.username}</h1>
-                <p className="text-sm truncate">{`${props.email}`}</p>
-            </span>
-            <span>
-                <UpdateEmployee employee={props} />
-                <DeleteEmployee employee={props} />
+                <h1 className="font-bold">{props.username}</h1>
+                <p className="text-sm truncate text-gray-600">{`${props.email}`}</p>
+                <span className="flex justify-end gap-2">
+                    <UpdateEmployee employee={props} />
+                    <DeleteEmployee employee={props} />
+                </span>
             </span>
         </div>
     );

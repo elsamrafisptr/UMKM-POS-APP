@@ -161,23 +161,23 @@ const TransactionPage = async () => {
                                 ))}
                             </div>
                             {/* Invoice */}
-                            <div className="bg-gray-200 px-2 py-4 mx-5 mt-6 grid grid-cols-2 gap-1">
+                            <div className="bg-gray-100 px-2 py-4 mx-5 mt-6 grid grid-cols-2 gap-1">
                                 <p>Subtotal</p>
                                 <h1 className="text-right font-medium">
-                                    Rp Subtotal
+                                    Rp 61.500
                                 </h1>
                                 <p>Diskon</p>
                                 <h1 className="text-right font-medium">
-                                    Rp Diskon
+                                    -Rp 500
                                 </h1>
                                 <p>Biaya pajak</p>
                                 <h1 className="text-right font-medium">
-                                    Rp Pajak
+                                    Rp 0
                                 </h1>
                                 <p className="col-span-2 h-0.5 bg-gray-600 my-1"></p>
                                 <h1 className="font-bold text-lg">Total</h1>
-                                <h1 className="font-bold text-lg text-right">
-                                    Rp Total
+                                <h1 className="font-bold text-lg text-right text-blue-600">
+                                    Rp 60.000
                                 </h1>
                             </div>
                             {/* create transaksi */}
