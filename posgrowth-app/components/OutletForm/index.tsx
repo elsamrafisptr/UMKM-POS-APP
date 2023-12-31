@@ -30,33 +30,33 @@ const OutletForm = () => {
         <>
             <form onSubmit={submitData} className="flex flex-col gap-2">
                 <div className="w-full flex flex-col gap-1">
-                    <label className="font-semibold text-sm">Nama Produk</label>
+                    <label className="font-semibold text-sm">Nama Outlet</label>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className=" px-5 py-2 border rounded"
-                        placeholder="Nama produk anda"
+                        placeholder="Nama outlet anda"
                     />
                 </div>
                 <div className="w-full flex flex-col gap-1">
-                    <label className="font-semibold text-sm">Kategori</label>
+                    <label className="font-semibold text-sm">Alamat</label>
                     <input
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         className="px-5 py-2 border rounded"
-                        placeholder="Kategori produk"
+                        placeholder="Alamat outlet anda"
                     />
                 </div>
                 <div className="w-full flex flex-col gap-1">
-                    <label className="font-semibold text-sm">Harga</label>
+                    <label className="font-semibold text-sm">Kontak Tersedia</label>
                     <input
                         type="text"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         className="px-5 py-2 border rounded"
-                        placeholder="Harga jual produk"
+                        placeholder="Kontak untuk menghubungi outlet anda"
                     />
                 </div>
 
